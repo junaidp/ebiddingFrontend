@@ -12,6 +12,7 @@ export class CompanyServiceService {
 
   constructor(private http: HttpClient) {
 
+    // 61cce8acbf285834f036cf9b Is temporary, This value will be companyId (After the company LogsIn, we will send that companyId here)
     this.contractorsUrl = GlobalConstants.baseUrl+'getContractors/61cce8acbf285834f036cf9b';
    }
 
