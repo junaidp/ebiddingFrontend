@@ -1,0 +1,16 @@
+<!-- Setting hardcoded value inisde textare <textarea rows ="6" [value]="'TEST'"></textarea> -->
+<!-- Setting value of a variable, #postInput is what u enter in the textarea <textarea rows ="6" [value]="newPost" #postInput></textarea>-->
+<mat-card>
+<mat-form-field>
+  <textarea matInput rows ="6" [(ngModel)]="enteredValue"></textarea>
+</mat-form-field>
+
+<!--<button (click)="onAddPost(postInput)">save post</button>-->
+<button
+mat-raised-button
+color="primary"
+(click)="onAddPost()"
+>Login
+</button>
+</mat-card>
+<p>{{ newPost }}</p>

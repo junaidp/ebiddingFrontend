@@ -1,0 +1,22 @@
+import { Component, OnInit } from '@angular/core';
+import { GlobalConstants } from '../common/global-constants';
+import { CompanyServiceService } from './contractor-service.service';
+
+@Component({
+  selector: 'app-contractors',
+  templateUrl: './contractors.component.html',
+  styleUrls: ['./contractors.component.css']
+})
+export class contractorsComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'description'];
+
+  dataSource = GlobalConstants.contractors;
+  constructor(private companyService: CompanyServiceService) { }
+
+  ngOnInit() {
+      this.companyService.findAll().subscribe((data: any) => {
+      GlobalConstants.contractors = data;
+      this.dataSource = GlobalConstants.contractors;
+    });
+  }
+}
