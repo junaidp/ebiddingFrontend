@@ -1,136 +1,3 @@
-<!-- <div fxLayoutAlign="center center" class="main-div">
-  <div class="col-md-12">
-    <mat-card>
-      <div fxLayoutAlign="center">
-        <img src="assets/image/env.jpg" class="loginImage">
-      </div>
-      <form fxLayoutAlign="stretch" fxLayout="column">
-        <mat-form-field>
-          <input matInput placeholder="username">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="password" placeholder="password">
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" routerLink="/main"> login</button>
-      </form>
-    </mat-card>
-  </div>
-</div> -->
-
-<!-- <div id="riderRegisterForm">
-  <div class="container" id="loginForm">
-    <div class="row">
-      <mat-card>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <h1>Login</h1>
-          <mat-divider></mat-divider>
-          <br />
-          <div >
-            <div fxLayoutAlign="center">
-              <img src="assets/image/env.jpg" class="loginImage">
-            </div>
-            <form (ngSubmit)="submitForm(loginForm)" #loginForm="ngForm">
-
-              <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12 offset-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="email" placeholder="Email" id="loginModel.email" name="loginModel.email"
-                      [(ngModel)]="loginModel.email" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12 offset-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="password" placeholder="Password" id="loginModel.password"
-                      name="loginModel.password" [(ngModel)]="loginModel.password" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12 offset-md-4">
-                  <div class="buttonGroup">
-                    <button class="example-full-width" mat-raised-button color="primary" value="Submit"
-                      type="submit">Login</button>
-                    <p id="forgotPass"><span (click)="toggleUi()">Forgot Password? Click Here!</span></p>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </mat-card>
-
-    </div>
-  </div>
-</div> -->
-<!-- <div class="login-page">
-  <div class="login-box">
-    <div class="logo">
-      <a href="javascript:void(0);">E-Bidding</a>
-    </div>
-
-    <div class="card">
-      <div class="body">
-        <form novalidate autocomplete="off" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
-          <h4 class="text-center">{{ "LogIn" }}</h4>
-          <div class="row clearfix">
-            <div class="col-xs-12">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="material-icons">person</i>
-                </span>
-                <div>
-                  <mat-form-field>
-                    <input matInput name="userNameOrEmailAddress" [(ngModel)]="
-                      loginModel.email
-                    " [placeholder]="'UserNameOrEmail'" autocomplete="off" required maxlength="255" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="material-icons">lock</i>
-                </span>
-                <div>
-                  <mat-form-field>
-                    <input matInput type="password" name="password" [(ngModel)]="loginModel.password"
-                      [placeholder]="'Password'" required maxlength="32" />
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-4">
-              <button mat-flat-button type="submit" flex="15" color="accent"
-                [disabled]="!loginForm.form.valid || submitting">
-                {{ "LogIn" }}
-              </button>
-            </div>
-          </div>
-          <div class="row m-t-15 m-b--20">
-            <div class="col-xs-12">
-              <a [routerLink]="['../register']">{{ "Register" }}</a>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12 text-center" style="color: #e9e9e9">
-
-        <p id="forgotPass"><span (click)="toggleUi()">Forgot Password? Click Here!</span></p>
-        <small>&copy; {{currentYear}} Inventory Management System. <b>{{ "Version" | localize }} </b> {{versionText}}</small>
-      </div>
-    </div>
-
-  </div>
-</div> -->
-
-
 <div id="login-form-wrap">
   <div class="logo">
     <a href="javascript:void(0);">E-Bidding</a>
@@ -148,13 +15,13 @@
       <input matInput type="password" name="password" [(ngModel)]="loginModel.password" [placeholder]="'Password'"
         required maxlength="32" />
     </mat-form-field>
-    <button routerLink="/e-main" class="example-width" mat-flat-button type="submit" flex="15" color="accent"
+    <button routerLink="/e-project" class="example-width" mat-flat-button type="submit" flex="15" color="accent"
       [disabled]="!loginForm.form.valid || submitting">
       {{ "LogIn" }}
     </button>
   </form>
   <div id="create-account-wrap">
-    <p>Not a member? <a href="#">Create Account</a>
+    <p>Not a member? <a href="#" routerLink="/register">Create Account</a>
     <p>
   </div>
   <!--create-account-wrap-->

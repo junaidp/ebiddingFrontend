@@ -1,0 +1,32 @@
+<section>
+    <div id="login-form-wrap">
+        <div class="logo">
+            <a href="javascript:void(0);">E-Bidding</a>
+        </div>
+        <!-- <div fxLayoutAlign="center">
+          <img src="assets/image/env.jpg" class="loginImage">
+        </div> -->
+        <h2>Register</h2>
+        <form id="login-form" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+            <mat-form-field class="example-width">
+                <input matInput name="firsName" [(ngModel)]="registerModule.firsName" [placeholder]="'First Name'"
+                    autocomplete="off" required maxlength="255" />
+            </mat-form-field>
+            <mat-form-field class="example-width">
+                <input matInput name="lastName" [(ngModel)]="registerModule.lastName" [placeholder]="'Last Name'"
+                    required maxlength="32" />
+            </mat-form-field>
+            <button routerLink="/e-project" class="example-width" mat-flat-button type="submit" flex="15" color="accent"
+                [disabled]="!loginForm.form.valid || submitting">
+                {{ "LogIn" }}
+            </button>
+        </form>
+        <div id="create-account-wrap">
+            <p>Already have Username? <a href="#" routerLink="/register">Forget Password</a>
+            <p>
+            <p>or <a href="#" routerLink="/register">Login</a>
+            <p>
+        </div>
+        <!--create-account-wrap-->
+    </div>
+</section>

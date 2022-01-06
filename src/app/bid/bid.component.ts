@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { GlobalConstants } from '../common/global-constants';
-import { IProject } from '../model/IProject';
 import {MatCalendar, MatDatepicker, MatDatepickerInput} from '@angular/material/datepicker';
 import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 import { MatSelectionList } from '@angular/material/list';
-import { IBid } from '../model/Ibid';
 import { BidService } from '../Services/bid-service/bid.service';
 import { ProjectServiceService } from '../Services/project-service/project.service';
+import { IProject } from '../interface/IProject';
+import { IBid } from '../interface/Ibid';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { IProject } from '../model/IProject';
+import { IProject } from '../interface/IProject';
 import { ProjectServiceService } from '../Services/project-service/project.service';
 
 @Component({

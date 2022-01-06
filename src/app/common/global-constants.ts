@@ -1,4 +1,5 @@
-import { ICompany } from "../model/ICompany";
+import { ICompany } from "../interface/ICompany";
+
 
 export class GlobalConstants {
 //public static projects: Project[] = [];

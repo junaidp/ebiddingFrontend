@@ -28,6 +28,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
     ProjectsComponent,
     contractorsComponent,
     BidComponent,
-    SideNavComponent
+    SideNavComponent,
+    RegisterUserComponent
   ],
 
   imports: [
