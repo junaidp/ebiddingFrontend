@@ -1,3 +1,30 @@
 table {
   width: 100%;
 }
+
+#projectForm{
+  margin: 25px!important
+}
+
+mat-card{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: right;
+}
+
+h1{
+  justify-content: center;
+  display: flex;
+  padding: 20px;
+  font-size: xxx-large;
+  font-family: fantasy;
+}
+
+/* .mat-header-row {
+  color: white !important;
+} */
+
+th {
+  color: white !important;
+}
+

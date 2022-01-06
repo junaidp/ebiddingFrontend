@@ -26,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { MatIconModule } from '@angular/material/icon';
     MainComponent,
     ProjectsComponent,
     contractorsComponent,
-    BidComponent
+    BidComponent,
+    SideNavComponent
   ],
 
   imports: [
@@ -58,7 +61,8 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule
 
   ],
   providers: [],

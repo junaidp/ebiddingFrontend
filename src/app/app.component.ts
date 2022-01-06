@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mean-course';
+
+
+  showSideNav(){
+    let show: boolean = false;
+    const url:string = window.location.href.toString();
+    if(url.includes('e-')) show = true;
+    return show;
+  }
 }

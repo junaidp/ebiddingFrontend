@@ -1,4 +1,4 @@
-export class Company {
-  name!: string;
-  description!: string;
+export interface Company {
+  name: string;
+  description: string;
 }

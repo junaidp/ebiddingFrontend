@@ -1,49 +1,53 @@
-<mat-stepper linear #stepper>
-  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Select Project</ng-template>
-
-          <mat-selection-list formControlName="firstCtrl" #projects  (ngModelChange)="onProjectSelection($event)">
-            <mat-list-option *ngFor="let project of projectNames" [value] = "project">
-              {{project}}
-            </mat-list-option>
-          </mat-selection-list>
-
-      <div style="padding-left: 90%; padding-top: 30px;">
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Select Company</ng-template>
-
-               <mat-selection-list formControlName="secondCtrl" #contractors (ngModelChange)="onCompanySelection($event)"> -->
-                <mat-list-option *ngFor="let company of companyNames" [value] = "company">
-                  {{company}}
-                </mat-list-option>
-              </mat-selection-list>
-
+<section id="bidForm">
+  <h1>Bid</h1>
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Select Project</ng-template>
+  
+            <mat-selection-list formControlName="firstCtrl" #projects  (ngModelChange)="onProjectSelection($event)">
+              <mat-list-option *ngFor="let project of projectNames" [value] = "project">
+                {{project}}
+              </mat-list-option>
+            </mat-selection-list>
+  
+        <div style="padding-left: 90%; padding-top: 30px;">
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Select Company</ng-template>
+  
+                 <mat-selection-list formControlName="secondCtrl" #contractors (ngModelChange)="onCompanySelection($event)"> -->
+                  <mat-list-option *ngFor="let company of companyNames" [value] = "company">
+                    {{company}}
+                  </mat-list-option>
+                </mat-selection-list>
+  
+        <div style="padding-left: 90%; padding-top: 30px;">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Create Bidding</ng-template>
+      <p>
+        <input mat-input  placeholder="Name" [(ngModel)]="bidName">
+  
+      </p>
+      <mat-card class="calendarCard">
+        <mat-calendar [(selected)]="selectedDate"></mat-calendar>
+      </mat-card>
+  
       <div style="padding-left: 90%; padding-top: 30px;">
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <!--  <button mat-button (click)="stepper.reset()">Reset</button> -->
+      <button mat-button (click)="saveBidding()">Save</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Create Bidding</ng-template>
-    <p>
-      <input mat-input  placeholder="Name" [(ngModel)]="bidName">
+    </mat-step>
+  </mat-stepper>
+</section>
 
-    </p>
-    <mat-card class="calendarCard">
-      <mat-calendar [(selected)]="selectedDate"></mat-calendar>
-    </mat-card>
-
-    <div style="padding-left: 90%; padding-top: 30px;">
-      <button mat-button matStepperPrevious>Back</button>
-    <!--  <button mat-button (click)="stepper.reset()">Reset</button> -->
-    <button mat-button (click)="saveBidding()">Save</button>
-    </div>
-  </mat-step>
-</mat-stepper>
