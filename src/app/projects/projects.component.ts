@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
 import { Project } from '../model/project';
-import { ProjectServiceService } from './project.service';
+import { ProjectServiceService } from '../Services/project-service/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -16,7 +15,12 @@ export class ProjectsComponent implements OnInit {
   constructor(private projectService: ProjectServiceService) { }
 
   ngOnInit() {
-      this.projectService.findAll().subscribe((data: any) => {
+    this.getAllProjects();
+  }
+
+
+  getAllProjects() {
+    this.projectService.findAll().subscribe((data: any) => {
       this.dataSource = data;
     });
   }

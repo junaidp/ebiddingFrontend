@@ -1,0 +1,22 @@
+#footer {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  bottom: 0;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 360px) {
+  #footer {
+    position: relative;
+  position: -webkit-relative;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  #footer {
+    position: relative;
+  position: -webkit-relative;
+  }
+}
+
+

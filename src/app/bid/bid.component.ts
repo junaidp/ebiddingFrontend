@@ -5,9 +5,9 @@ import { Project } from '../model/project';
 import {MatCalendar, MatDatepicker, MatDatepickerInput} from '@angular/material/datepicker';
 import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 import { MatSelectionList } from '@angular/material/list';
-import { BidService } from './bid.service';
 import { Bid } from '../model/bid';
-import { ProjectServiceService } from '../projects/project.service';
+import { BidService } from '../Services/bid-service/bid.service';
+import { ProjectServiceService } from '../Services/project-service/project.service';
 
 
 @Component({
