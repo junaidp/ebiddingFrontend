@@ -1,8 +1,8 @@
-import { Company } from '../model/company';
-import { Project } from '../model/project';
+import { ICompany } from "../model/ICompany";
+
 export class GlobalConstants {
 //public static projects: Project[] = [];
-public static contractors: Company[] = [];
+public static contractors: ICompany[] = [];
 public static baseUrl = "http://localhost:8081/api/";
 public static companyId: string ;
 

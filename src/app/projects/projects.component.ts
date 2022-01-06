@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Project } from '../model/project';
+import { IProject } from '../model/IProject';
 import { ProjectServiceService } from '../Services/project-service/project.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class ProjectsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description'];
 
-  dataSource: Project[] = [];
+  dataSource: IProject[] = [];
   constructor(private projectService: ProjectServiceService) { }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-export interface Bid {
+export interface IBid {
   name: string;
   date: Date;
   companyId: String;

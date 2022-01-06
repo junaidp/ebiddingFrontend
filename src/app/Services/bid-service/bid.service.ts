@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Bid } from 'src/app/model/bid';
+import { IBid } from 'src/app/model/Ibid';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class BidService {
 
   }
 
-  public saveBid(bid: Bid): Observable<Bid> {
-    return this.http.post<Bid>(this.saveBidUrl, bid).pipe(
+  public saveBid(bid: IBid): Observable<IBid> {
+    return this.http.post<IBid>(this.saveBidUrl, bid).pipe(
       catchError(this.handleError('saveBid', bid))
     );
   }

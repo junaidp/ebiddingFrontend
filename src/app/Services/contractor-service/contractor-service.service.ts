@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Company } from 'src/app/model/company';
+import { ICompany } from 'src/app/model/ICompany';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class CompanyServiceService {
   }
 
   public findAll() {
-    var result = this.http.get<Company[]>(this.contractorsUrl);
+    var result = this.http.get<ICompany[]>(this.contractorsUrl);
     return result;
   }
 

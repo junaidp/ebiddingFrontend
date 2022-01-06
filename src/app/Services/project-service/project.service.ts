@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Project } from 'src/app/model/project';
+import { IProject } from 'src/app/model/IProject';
 
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ProjectServiceService {
   }
 
   findAll() {
-    return this.http.get<Project[]>(this.projectsUrl);
+    return this.http.get<IProject[]>(this.projectsUrl);
   }
 
 
