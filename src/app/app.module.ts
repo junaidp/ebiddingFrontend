@@ -27,9 +27,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgxFlagPickerModule } from 'ngx-flag-picker';
 import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
-import { NgxFlagPickerModule } from 'ngx-flag-picker';
 @NgModule({
   declarations: [
     AppComponent,
