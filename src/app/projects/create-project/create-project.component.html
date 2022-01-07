@@ -1,0 +1,23 @@
+<div mat-dialog-header>
+    Create Project
+</div>
+<form #createProjectForm="ngForm" (ngSubmit)="submitForm(createProjectForm)">
+    <div mat-dialog-content>
+
+        <mat-form-field class="example-width">
+            <input matInput type="text" name="name" [(ngModel)]="projectModel.name" [placeholder]="'Name'"
+                autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+        <mat-form-field class="example-width">
+            <input matInput type="text" name="description" [(ngModel)]="projectModel.description"
+                [placeholder]="'Description'" autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="example-width" mat-flat-button type="submit" flex="15" color="accent"
+            [disabled]="!createProjectForm.form.valid || submitting">
+            {{ "Create" }}
+        </button>
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</form>

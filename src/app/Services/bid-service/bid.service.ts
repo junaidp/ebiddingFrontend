@@ -9,7 +9,7 @@ import { IBid } from 'src/app/interface/Ibid';
 })
 export class BidService {
 
-  private saveBidUrl = environment.baseUrl + 'saveBid';
+  private saveBidUrl = environment.baseURL + 'saveBid';
 
   handleError: any;
 

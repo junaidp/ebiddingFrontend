@@ -30,6 +30,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
 import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     contractorsComponent,
     BidComponent,
     SideNavComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    CreateProjectComponent
   ],
 
   imports: [
@@ -66,7 +69,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSidenavModule,
-    NgxFlagPickerModule
+    NgxFlagPickerModule,
+    MatDialogModule
 
   ],
   providers: [],

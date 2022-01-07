@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalConstants } from '../common/global-constants';
-import { CompanyService } from '../Services/contractor-service/contractor-service.service';
+import { IContractor } from '../interface/IContractor';
+import { ContractorService } from '../Services/contractor-service/contractor-service.service';
 
 @Component({
   selector: 'app-contractors',
@@ -10,13 +11,12 @@ import { CompanyService } from '../Services/contractor-service/contractor-servic
 export class contractorsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'description'];
 
-  dataSource = GlobalConstants.contractors;
-  constructor(private companyService: CompanyService) { }
+  dataSource: IContractor[] = [];
+  constructor(private contractorService: ContractorService) { }
 
   ngOnInit() {
-      this.companyService.findAll().subscribe((data: any) => {
-      GlobalConstants.contractors = data;
-      this.dataSource = GlobalConstants.contractors;
+    this.contractorService.findAll().subscribe((data: any) => {
+      this.dataSource = data;
     });
   }
 }

@@ -6,9 +6,9 @@ import { ICompany } from 'src/app/interface/ICompany';
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class ContractorService {
 
-  private contractorsUrl = environment.baseUrl + 'getContractors/61cce8acbf285834f036cf9b';
+  private contractorsUrl = environment.baseURL + 'getContractors/61cce8acbf285834f036cf9b';
 
   constructor(private http: HttpClient) {
 
