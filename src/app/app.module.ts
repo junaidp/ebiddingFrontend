@@ -29,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { NgxFlagPickerModule } from 'ngx-flag-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSidenavModule
+    MatSidenavModule,
+    NgxFlagPickerModule
 
   ],
   providers: [],
