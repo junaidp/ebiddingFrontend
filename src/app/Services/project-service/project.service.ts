@@ -7,7 +7,7 @@ import { IProject } from 'src/app/interface/IProject';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectServiceService {
+export class ProjectService {
 
   private projectsUrl = environment.baseURL + 'getProjects/61cce8acbf285834f036cf9b'
 

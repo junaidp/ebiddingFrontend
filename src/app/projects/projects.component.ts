@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IProject } from '../interface/IProject';
-import { ProjectServiceService } from '../Services/project-service/project.service';
+import { ProjectService } from '../Services/project-service/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -13,7 +13,7 @@ export class ProjectsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'description'];
 
   dataSource: IProject[] = [];
-  constructor(private projectService: ProjectServiceService) { }
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
     this.getAllProjects();

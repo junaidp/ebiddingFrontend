@@ -6,7 +6,7 @@ import { ICompany } from 'src/app/interface/ICompany';
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyServiceService {
+export class CompanyService {
 
   private contractorsUrl = environment.baseURL + 'getContractors/61cce8acbf285834f036cf9b';
 
