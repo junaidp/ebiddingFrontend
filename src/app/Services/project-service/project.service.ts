@@ -9,7 +9,7 @@ import { IProject } from 'src/app/interface/IProject';
 })
 export class ProjectService {
 
-  private projectsUrl = environment.baseURL + 'getProjects/61cce8acbf285834f036cf9b'
+  private projectsUrl = environment.baseUrl + 'getProjects/61cce8acbf285834f036cf9b'
 
   constructor(private http: HttpClient) {
 
