@@ -1,18 +1,28 @@
-  <div fxLayoutAlign="center center" fxFlexFill class="main-div" >
-  <mat-card fxFlex="45">
-    <!--<mat-toolbar color="primary">Login Page</mat-toolbar> -->
-    <div fxLayoutAlign="center">
-       <img src="assets/image/env.jpg" class = "loginImage">
-      </div>
-    <form fxLayoutAlign="stretch" fxLayout="column">
-      <mat-form-field>
-        <input matInput placeholder="username">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput type="password" placeholder="password">
-      </mat-form-field>
-      <button mat-raised-button color="primary"  type="submit" routerLink="/main" > login</button>
-    </form>
-  </mat-card>
+<div id="login-form-wrap">
+  <div class="logo">
+    <a href="javascript:void(0);">E-Bidding</a>
+  </div>
+  <!-- <div fxLayoutAlign="center">
+    <img src="assets/image/env.jpg" class="loginImage">
+  </div> -->
+  <h2>Login</h2>
+  <form id="login-form" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+    <mat-form-field class="example-width">
+      <input matInput name="userNameOrEmailAddress" [(ngModel)]="loginModel.email" [placeholder]="'UserNameOrEmail'"
+        autocomplete="off" required maxlength="255" />
+    </mat-form-field>
+    <mat-form-field class="example-width">
+      <input matInput type="password" name="password" [(ngModel)]="loginModel.password" [placeholder]="'Password'"
+        required maxlength="32" />
+    </mat-form-field>
+    <button routerLink="/e-project" class="example-width" mat-flat-button type="submit" flex="15" color="accent"
+      [disabled]="!loginForm.form.valid || submitting">
+      {{ "LogIn" }}
+    </button>
+  </form>
+  <div id="create-account-wrap">
+    <p>Not a member? <a href="#" routerLink="/register">Create Account</a>
+    <p>
+  </div>
+  <!--create-account-wrap-->
 </div>

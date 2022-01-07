@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
-import { Project } from '../model/project';
-import { ProjectServiceService } from './project.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { IProject } from '../interface/IProject';
+import { ProjectServiceService } from '../Services/project-service/project.service';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
+  ///encapsulation: ViewEncapsulation.None
 })
 export class ProjectsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description'];
 
-  dataSource: Project[] = [];
+  dataSource: IProject[] = [];
   constructor(private projectService: ProjectServiceService) { }
 
   ngOnInit() {
-      this.projectService.findAll().subscribe((data: any) => {
+    this.getAllProjects();
+  }
+
+
+  getAllProjects() {
+    this.projectService.findAll().subscribe((data: any) => {
       this.dataSource = data;
     });
   }

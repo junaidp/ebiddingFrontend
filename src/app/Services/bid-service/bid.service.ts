@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GlobalConstants } from '../common/global-constants';
-import { Bid } from '../model/bid';
 import { catchError, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { IBid } from 'src/app/interface/Ibid';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BidService {
 
-  private saveBidUrl: string;
+  private saveBidUrl = environment.baseURL + 'saveBid';
 
   handleError: any;
 
   constructor(private http: HttpClient) {
-    this.saveBidUrl = GlobalConstants.baseUrl+'saveBid';
-   }
 
-   public saveBid(bid: Bid):Observable<Bid> {
-    return  this.http.post<Bid>(this.saveBidUrl, bid).pipe(
+  }
+
+  public saveBid(bid: IBid): Observable<IBid> {
+    return this.http.post<IBid>(this.saveBidUrl, bid).pipe(
       catchError(this.handleError('saveBid', bid))
     );
   }

@@ -1,3 +1,13 @@
-<router-outlet></router-outlet>
+<section class="content" *ngIf="showSideNav() === true">
+    <app-side-nav>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </app-side-nav>
+</section>
 
-
+<section class="content" *ngIf="showSideNav() === false">
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</section>

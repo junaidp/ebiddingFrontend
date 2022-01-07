@@ -1,0 +1,47 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-nav-list style="margin-top: 90% !important;">
+      <ng-container >
+        <div class="list-item">
+          <a matTooltip="Project" routerLink="/e-project">
+            <!-- <img style="width: 35px; height: 35px;" [src]="item.icon"> -->
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> Project
+          </a>
+        </div>
+      </ng-container>
+      <ng-container >
+        <div class="list-item">
+          <a matTooltip="Contractor" routerLink="/e-contractor">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon> Contractor
+          </a>
+        </div>
+      </ng-container>
+      <ng-container >
+        <div class="list-item" >
+          <a matTooltip="Bid" routerLink="/e-bid">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> Bid
+          </a>
+        </div>
+      </ng-container>
+
+      <!-- <a style="margin-top: 2em;" mat-list-item (click)="redirect('/')" [matTooltip]="'Logout'">
+        <img style="width: 30px; height: 25px;" [src]="'../../../assets/icons/logout-icon.png'">
+      </a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>E-Bidding</span>
+    </mat-toolbar>
+    <!-- <app-header>
+      
+    </app-header> -->
+    <ng-content></ng-content>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

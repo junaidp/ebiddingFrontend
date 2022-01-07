@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { GlobalConstants } from '../common/global-constants';
-import { Project } from '../model/project';
 import {MatCalendar, MatDatepicker, MatDatepickerInput} from '@angular/material/datepicker';
 import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 import { MatSelectionList } from '@angular/material/list';
-import { BidService } from './bid.service';
-import { Bid } from '../model/bid';
-import { ProjectServiceService } from '../projects/project.service';
+import { BidService } from '../Services/bid-service/bid.service';
+import { ProjectServiceService } from '../Services/project-service/project.service';
+import { IProject } from '../interface/IProject';
+import { IBid } from '../interface/Ibid';
 
 
 @Component({
@@ -21,15 +21,15 @@ export class BidComponent implements OnInit {
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
   isEditable = false;
-  projectsList : Project[] = [];
+  projectsList : IProject[] = [];
   projectNames : Array<String> = [] ;
   companyNames : Array<String> = [];
   selectedProject: any;
   selectedCompany: any;
   selectedDate!: Date ;
   bidName! :string;
-  bidList! : Bid[];
-  bid!: Bid;
+  bidList! : IBid[];
+  bid!: IBid;
 
  constructor(private _formBuilder: FormBuilder, private bidService: BidService, private projectService: ProjectServiceService) {
 

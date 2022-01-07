@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalConstants } from '../common/global-constants';
-import { CompanyServiceService } from './contractor-service.service';
+import { CompanyServiceService } from '../Services/contractor-service/contractor-service.service';
 
 @Component({
   selector: 'app-contractors',
