@@ -27,3 +27,11 @@ th {
 }
 
 
+.selected-pill {
+  font-size: large;
+  background: #3a3148e0 !important;
+  padding: 10px;
+  color: white;
+}
+
+

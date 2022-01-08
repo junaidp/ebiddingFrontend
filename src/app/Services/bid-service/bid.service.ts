@@ -17,9 +17,7 @@ export class BidService {
 
   }
 
-  public saveBid(bid: IBid): Observable<IBid> {
-    return this.http.post<IBid>(this.saveBidUrl, bid).pipe(
-      catchError(this.handleError('saveBid', bid))
-    );
+  public saveBid(bid: IBid) {
+    return this.http.post(this.saveBidUrl, bid, { responseType: 'text' });
   }
 }

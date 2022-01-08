@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { GlobalConstants } from '../common/global-constants';
-import {MatCalendar, MatDatepicker, MatDatepickerInput} from '@angular/material/datepicker';
-import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
-import { MatSelectionList } from '@angular/material/list';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BidService } from '../Services/bid-service/bid.service';
 import { IProject } from '../interface/IProject';
 import { IBid } from '../interface/Ibid';
 import { ProjectService } from '../Services/project-service/project.service';
+import { IContractor } from '../interface/IContractor';
+import { ContractorService } from '../Services/contractor-service/contractor-service.service';
+
+import * as moment from 'moment';
+import { MatInput } from '@angular/material/input';
 
 
 @Component({
@@ -17,27 +18,40 @@ import { ProjectService } from '../Services/project-service/project.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BidComponent implements OnInit {
-
+  isLinear = false;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
   isEditable = false;
-  projectsList : IProject[] = [];
-  projectNames : Array<String> = [] ;
-  companyNames : Array<String> = [];
-  selectedProject: any;
-  selectedCompany: any;
-  selectedDate!: Date ;
-  bidName! :string;
-  bidList! : IBid[];
-  bid!: IBid;
+  projectsList: IProject[] = [];
+  contractorsList: IContractor[] = [];
+  selectedProject: IProject = {
+    name: "",
+    description: "",
+    companyId: ""
+  };
+  selectedContractor: IContractor = {
+    name: "",
+    description: "",
+    email: "",
+    companyId: ""
+  };
+  name: string = "";
+  companyId: string = "";
+  selectedDate: number = 0;
+  @ViewChild('date', {
+    read: MatInput
+  }) date1: MatInput | undefined;
 
- constructor(private _formBuilder: FormBuilder, private bidService: BidService, private projectService: ProjectService) {
+  constructor(private _formBuilder: FormBuilder,
+    private bidService: BidService,
+    private projectService: ProjectService,
+    private contractorService: ContractorService
+  ) {
 
-  // setTimeout(() => {
-  //   alert(GlobalConstants.contractors)
-  //   this.updateList();
-  // }, 2000);
- }
+    let companyId = localStorage.getItem("companyId");
+    if (companyId)
+      this.companyId = JSON.parse(companyId);
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -46,39 +60,42 @@ export class BidComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required],
     });
-    this.updateList();
+    this.getAllProject();
+    this.getAllContractor();
   }
 
-  updateList(){
-    this.projectService.findAll().subscribe((data: any) => {
-      for (var project of data) {
-        this.projectNames.push(project.name);
-        }
+  getAllContractor() {
+    this.contractorService.findAll(this.companyId).subscribe((data: any) => {
+      this.contractorsList = data;
     });
-
-
-      for (var company of GlobalConstants.contractors) {
-        this.companyNames.push(company.name);
-      }
+  }
+  getAllProject() {
+    this.projectService.findAll(this.companyId).subscribe((data: any) => {
+      this.projectsList = data;
+    });
   }
 
-  saveBidding(){
-    alert(this.selectedProject)
-    alert(this.selectedCompany)
+  saveBidding() {
     alert(this.selectedDate)
 
-    this.bid.name = this.bidName;
-    this.bid.companyId = GlobalConstants.companyId;
-    this.bid.date = this.selectedDate;
-    this.bidService.saveBid(this.bid).subscribe(bid => this.bidList.push(bid));
+    //this.bid.name = this.bidName;
+    //this.bid.companyId = GlobalConstants.companyId;
+    //this.bid.date = this.selectedDate;
+    //this.bidService.saveBid(this.bid).subscribe(bid => this.bidList.push(bid));
 
   }
 
-  onProjectSelection($event: any){
-    this.selectedProject=$event;
+  onProjectSelection(event: any) {
+    debugger
+    this.selectedProject = event[0];
   }
 
-  onCompanySelection($event: any){
-    this.selectedCompany=$event;
+  onContractorSelection(event: any) {
+    this.selectedContractor = event[0];
+  }
+
+  getDate(ev: any) {
+    this.selectedDate = moment(ev.value).valueOf();
+    // console.log('Startdate', this.startDate)
   }
 }

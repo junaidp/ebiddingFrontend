@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { IProject } from 'src/app/interface/IProject';
+import { CommonService } from 'src/app/Services/common/common.service';
 import { ProjectService } from 'src/app/Services/project-service/project.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-project',
@@ -15,18 +18,37 @@ export class CreateProjectComponent implements OnInit {
     companyId: ""
   }
   submitting = false;
-  constructor(private _service: ProjectService) { }
+  constructor(
+    private _service: ProjectService,
+    private _dialogRef: MatDialogRef<CreateProjectComponent>,
+    private common: CommonService
+  ) {
+    let companyId = localStorage.getItem("companyId");
+    if (companyId)
+      this.projectModel.companyId = JSON.parse(companyId);
+  }
 
   ngOnInit(): void {
   }
 
-  async submitForm(event: any) {
+  submitForm(event: any) {
+    this.common.showSpinner();
     var req: IProject = {
       name: event.form.value.name,
       description: event.form.value.description,
-      companyId: "abc"
+      companyId: this.projectModel.companyId
     }
-    const response = await this._service.saveProject(event).toPromise();
+    this._service.saveProject(req).subscribe((res: any) => {
+      if (res) {
+        this.common.hideSpinner();
+        this.close(res);
+      }
+    })
+
+  }
+
+  close(result: any): void {
+    this._dialogRef.close(result);
   }
 
 }

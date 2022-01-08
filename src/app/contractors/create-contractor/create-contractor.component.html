@@ -1,0 +1,27 @@
+<div class="mat-dialog-header">
+    Create Contractor
+</div>
+<form #createContractorForm="ngForm" (ngSubmit)="submitForm(createContractorForm)">
+    <div mat-dialog-content>
+
+        <mat-form-field class="example-width">
+            <input matInput type="text" name="name" [(ngModel)]="contractorModel.name" [placeholder]="'Name'"
+                autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+        <mat-form-field class="example-width">
+            <input matInput type="text" name="description" [(ngModel)]="contractorModel.description"
+                [placeholder]="'Description'" autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+        <mat-form-field class="example-width">
+            <input matInput type="email" name="email" [(ngModel)]="contractorModel.email" [placeholder]="'Email'"
+                autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="example-width" mat-flat-button type="submit" flex="15" color="accent"
+            [disabled]="!createContractorForm.form.valid || submitting">
+            {{ "Create" }}
+        </button>
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</form>

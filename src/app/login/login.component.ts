@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   }
   submitForm(event: Object) {
+    debugger
+    localStorage.setItem("companyId", JSON.stringify("61cce8acbf285834f036cf9b"));
     this.router.navigate(["/e-project"]);
   }
 

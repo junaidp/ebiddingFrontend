@@ -32,6 +32,7 @@ import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CreateContractorComponent } from './contractors/create-contractor/create-contractor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BidComponent,
     SideNavComponent,
     RegisterUserComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    CreateContractorComponent
   ],
 
   imports: [

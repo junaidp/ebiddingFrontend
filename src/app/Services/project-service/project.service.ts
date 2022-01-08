@@ -8,19 +8,19 @@ import { IProject } from 'src/app/interface/IProject';
 })
 export class ProjectService {
 
-  private getProjectsUrl = environment.baseURL + 'getProjects/61cce8acbf285834f036cf9b'
-  private saveProjectUrl = environment.baseURL + 'getProjects/61cce8acbf285834f036cf9b'
+  private getProjectsUrl = environment.baseURL + 'getProjects'
+  private saveProjectUrl = environment.baseURL + 'saveProject'
 
   constructor(private http: HttpClient) {
 
   }
 
-  findAll() {
-    return this.http.get<IProject[]>(this.getProjectsUrl);
+  findAll(companyId: string) {
+    return this.http.get<IProject[]>(`${this.getProjectsUrl}/${companyId}`);
   }
 
   saveProject(data: IProject) {
-    return this.http.post(this.saveProjectUrl, data);
+    return this.http.post(this.saveProjectUrl, data, { responseType: 'text' });
   }
 
 
