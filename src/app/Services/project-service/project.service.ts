@@ -8,8 +8,8 @@ import { IProject } from 'src/app/interface/IProject';
 })
 export class ProjectService {
 
-  private getProjectsUrl = environment.baseURL + 'getProjects'
-  private saveProjectUrl = environment.baseURL + 'saveProject'
+  private getProjectsUrl = environment.baseUrl + 'getProjects'
+  private saveProjectUrl = environment.baseUrl + 'saveProject'
 
   constructor(private http: HttpClient) {
 

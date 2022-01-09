@@ -8,8 +8,8 @@ import { IContractor } from 'src/app/interface/IContractor';
 })
 export class ContractorService {
 
-  private getContractorsUrl = environment.baseURL + 'getContractors';
-  private saveContractorsUrl = environment.baseURL + 'saveContractor';
+  private getContractorsUrl = environment.baseUrl + 'getContractors';
+  private saveContractorsUrl = environment.baseUrl + 'saveContractor';
 
   constructor(private http: HttpClient) {
 
