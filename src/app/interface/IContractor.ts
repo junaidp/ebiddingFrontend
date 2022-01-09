@@ -3,4 +3,5 @@ export interface IContractor {
   description: string;
   email: string;
   companyId: string;
+  contractorId: string;
 }

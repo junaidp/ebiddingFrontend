@@ -1,0 +1,82 @@
+.mat-stepper-horizontal {
+  margin-top: 38px;
+}
+
+.mat-form-field {
+  margin-top: 26px;
+}
+.calendarCard {
+  width: 300px;
+}
+
+#bidForm{
+  margin: 25px
+}
+
+h1{
+  justify-content: center;
+  display: flex;
+  padding: 20px;
+  font-size: xxx-large;
+  font-family: fantasy;
+}
+
+
+th {
+  color: white !important;
+}
+
+
+.selected-pill {
+  font-size: large;
+  background: #3a3148e0 !important;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: left;
+}
+
+.example-full-width{
+  width: 90%;
+  margin: 10px;
+}
+
+.container-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article {
+  flex-grow: 1;
+  flex-basis: 50%;
+}
+
+.margin-top{
+  margin-top:21px
+}
+
+.color-red {
+  color:red;
+  margin-left: 5px;
+}
+.color-green {
+  color:greenyellow;
+  margin-left: 5px;
+}
+
+.form-field-actions{
+  display: flex;
+  justify-content: left;
+}
+
+.example-width{
+  margin-right: 5px;
+}
+
+.back-button {
+  background-color: darkgray;
+}
+
+
+
+

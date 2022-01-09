@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IBid } from 'src/app/interface/Ibid';
+import { ISaveBid } from 'src/app/interface/ISaveBid';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { IBid } from 'src/app/interface/Ibid';
 export class BidService {
 
   private saveBidUrl = environment.baseUrl + 'saveBid';
+  private getBidUrl = environment.baseUrl + 'getBids';
 
   handleError: any;
 
@@ -17,7 +19,12 @@ export class BidService {
 
   }
 
-  public saveBid(bid: IBid) {
-    return this.http.post(this.saveBidUrl, bid, { responseType: 'text' });
+
+  findAll(companyId: string) {
+    return this.http.get<IBid[]>(`${this.getBidUrl}/${companyId}`);
+  }
+
+  public saveBid(bid: ISaveBid) {
+    return this.http.post(this.saveBidUrl, bid, { responseType: 'json' });
   }
 }

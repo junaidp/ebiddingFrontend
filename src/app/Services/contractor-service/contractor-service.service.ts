@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IContractor } from 'src/app/interface/IContractor';
+import { ISaveContractor } from 'src/app/interface/ISaveContractor';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ContractorService {
     return result;
   }
 
-  saveProject(data: IContractor) {
+  saveContractor(data: ISaveContractor) {
     return this.http.post(this.saveContractorsUrl, data, { responseType: 'text' });
   }
 

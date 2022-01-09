@@ -1,0 +1,87 @@
+<section id="bidForm">
+  <h1>Bid</h1>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Project</ng-template>
+        <h3 class="selected-pill" *ngIf="!selectedProject.projectId"><span>Please Select a Project</span>
+          <mat-icon class="color-red">warning</mat-icon>
+        </h3>
+        <h3 class="selected-pill" *ngIf="selectedProject.projectId"><span class="box-margin">Selected Project :
+            {{selectedProject.name}} </span>
+          <mat-icon class="color-green">check_circle</mat-icon>
+        </h3>
+        <mat-selection-list [multiple]="false" formControlName="firstCtrl" #projects
+          (ngModelChange)="onProjectSelection($event)">
+          <mat-list-option *ngFor="let project of projectsList" [value]="project">
+            <span style="color: black;">{{project.name}}</span>
+          </mat-list-option>
+        </mat-selection-list>
+        <div>
+          <!-- <button mat-button matStepperNext>Next</button> -->
+          <button class="example-width" mat-flat-button type="button" mat-button matStepperNext flex="15" color="accent"
+            [disabled]="!selectedProject.projectId">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Contractor">
+      <form [formGroup]="secondFormGroup">
+        <h3 class="selected-pill" *ngIf="!selectedContractor.contractorId"><span>Please Select a Contractor</span>
+          <mat-icon class="color-red">warning</mat-icon>
+        </h3>
+        <h3 class="selected-pill" *ngIf="selectedContractor.contractorId"><span>Selected Contractor :
+            {{selectedContractor.name}}</span>
+          <mat-icon class="color-green">check_circle</mat-icon>
+        </h3>
+        <mat-selection-list [multiple]="false" formControlName="secondCtrl" #contractors
+          (ngModelChange)="onContractorSelection($event)">
+          <mat-list-option *ngFor="let item of contractorsList" [value]="item">
+            <span style="color: black;">{{item.name}}</span>
+          </mat-list-option>
+        </mat-selection-list>
+        <div>
+          <button class="example-width back-button" mat-button matStepperPrevious>Back</button>
+          <button class="example-width" mat-flat-button type="button" mat-button matStepperNext flex="15" color="accent"
+            [disabled]="!selectedContractor.contractorId">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Bid">
+      <ng-template matStepLabel>Bid</ng-template>
+      <form [formGroup]="thirdFormGroup" #bidProjectForm="ngForm" (submit)="submitForm(bidProjectForm)">
+        <div class="container-flex">
+          <div class="article">
+            <mat-form-field class="example-full-width margin-top">
+              <input id="name" type="text" formControlName="name" name="name" [(ngModel)]="name" matInput
+                placeholder="Name" required>
+            </mat-form-field>
+          </div>
+          <div class="article">
+            <mat-form-field appearance="standard" class="example-full-width">
+              <mat-label>Choose a date</mat-label>
+              <input matInput formControlName="datePicker" [matDatepicker]="datePicker" required
+                (dateInput)="getDate($event)" id="datePicker" name="datePicker">
+              <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+              <mat-datepicker #datePicker></mat-datepicker>
+            </mat-form-field>
+
+          </div>
+        </div>
+
+        <div class="form-field-actions">
+          <button class="example-width back-button" mat-button matStepperPrevious>Back</button>
+          <button mat-button class="reset-button example-width" (click)="reset(stepper)">Reset</button>
+          <button class="example-width" mat-flat-button type="submit" mat-button flex="15" color="accent"
+            [disabled]="'false'">
+            Create Bid
+          </button>
+        </div>
+
+      </form>
+    </mat-step>
+  </mat-stepper>
+</section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ILoginModule } from '../interface/ILoginModule';
+import { ILoginModule } from 'src/app/interface/ILoginModule';
 
 @Component({
   selector: 'app-login',

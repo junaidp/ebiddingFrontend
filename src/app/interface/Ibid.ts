@@ -4,4 +4,5 @@ export interface IBid {
   companyId: String;
   project: string;
   contractor: string;
+  BidId: string;
 }

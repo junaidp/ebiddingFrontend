@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { IProject } from '../interface/IProject';
-import { ProjectService } from '../Services/project-service/project.service';
 import { MatDialog } from '@angular/material/dialog';
+import { GlobalConstants } from 'src/app/common/global-constants';
+import { IProject } from 'src/app/interface/IProject';
+import { CommonService } from 'src/app/Services/common/common.service';
+import { ProjectService } from 'src/app/Services/project-service/project.service';
 import { CreateProjectComponent } from './create-project/create-project.component';
-import { CommonService } from '../Services/common/common.service';
-import { GlobalConstants } from '../common/global-constants';
-
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GlobalConstants } from '../common/global-constants';
-import { IContractor } from '../interface/IContractor';
-import { CommonService } from '../Services/common/common.service';
-import { ContractorService } from '../Services/contractor-service/contractor-service.service';
+import { GlobalConstants } from 'src/app/common/global-constants';
+import { IContractor } from 'src/app/interface/IContractor';
+import { CommonService } from 'src/app/Services/common/common.service';
+import { ContractorService } from 'src/app/Services/contractor-service/contractor-service.service';
 import { CreateContractorComponent } from './create-contractor/create-contractor.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { CreateContractorComponent } from './create-contractor/create-contractor
   templateUrl: './contractors.component.html',
   styleUrls: ['./contractors.component.css']
 })
-export class contractorsComponent implements OnInit {
+export class ContractorsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'description'];
   companyId: string = "";
   dataSource: IContractor[] = [];

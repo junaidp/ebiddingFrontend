@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { IContractor } from 'src/app/interface/IContractor';
+import { ISaveContractor } from 'src/app/interface/ISaveContractor';
 import { ContractorService } from 'src/app/Services/contractor-service/contractor-service.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-contractor',
@@ -11,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class CreateContractorComponent implements OnInit {
 
-  contractorModel: IContractor = {
+  contractorModel: ISaveContractor = {
     name: "",
     description: "",
     email: "",
@@ -27,13 +26,13 @@ export class CreateContractorComponent implements OnInit {
   }
 
   submitForm(event: any) {
-    var req: IContractor = {
+    var req: ISaveContractor = {
       name: event.form.value.name,
       description: event.form.value.description,
       email: event.form.value.email,
       companyId: this.contractorModel.companyId,
     }
-    this._service.saveProject(req).subscribe((res: any) => {
+    this._service.saveContractor(req).subscribe((res: any) => {
       if (res) {
         this.close(res);
       }

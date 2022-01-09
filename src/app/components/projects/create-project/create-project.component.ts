@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IProject } from 'src/app/interface/IProject';
+import { ISaveProject } from 'src/app/interface/ISaveProject';
 import { CommonService } from 'src/app/Services/common/common.service';
 import { ProjectService } from 'src/app/Services/project-service/project.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-project',
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class CreateProjectComponent implements OnInit {
 
-  projectModel: IProject = {
+  projectModel: ISaveProject = {
     name: "",
     description: "",
     companyId: ""
@@ -33,7 +33,7 @@ export class CreateProjectComponent implements OnInit {
 
   submitForm(event: any) {
     this.common.showSpinner();
-    var req: IProject = {
+    var req: ISaveProject = {
       name: event.form.value.name,
       description: event.form.value.description,
       companyId: this.projectModel.companyId

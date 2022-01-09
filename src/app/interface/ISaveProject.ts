@@ -1,6 +1,5 @@
-export interface IProject {
+export interface ISaveProject {
   name: string;
   description: string;
   companyId: string;
-  projectId: string;
 }

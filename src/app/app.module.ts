@@ -10,29 +10,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MainComponent } from './main/main.component';
-import { ProjectsComponent } from './projects/projects.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { contractorsComponent } from './contractors/contractors.component';
-import { BidComponent } from './bid/bid.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
 import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CreateContractorComponent } from './contractors/create-contractor/create-contractor.component';
+import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainComponent } from './components/main/main.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ContractorsComponent } from './components/contractors/contractors.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { CreateContractorComponent } from './components/contractors/create-contractor/create-contractor.component';
+import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
+import { BidListComponent } from './components/bids/bid-list/bid-list.component';
+import { CreateBidComponent } from './components/bids/create-bid/bid.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,12 +42,13 @@ import { CreateContractorComponent } from './contractors/create-contractor/creat
     PostCreateComponent,
     MainComponent,
     ProjectsComponent,
-    contractorsComponent,
-    BidComponent,
+    ContractorsComponent,
     SideNavComponent,
     RegisterUserComponent,
     CreateProjectComponent,
-    CreateContractorComponent
+    CreateContractorComponent,
+    BidListComponent,
+    CreateBidComponent,
   ],
 
   imports: [

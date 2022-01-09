@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ILoginModule } from '../interface/ILoginModule';
-import { IRegister } from '../interface/IRegister';
-
+import { IRegister } from 'src/app/interface/IRegister';
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',

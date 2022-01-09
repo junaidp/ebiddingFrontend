@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BidComponent } from './bid/bid.component';
-import { contractorsComponent } from './contractors/contractors.component';
-import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
+import { BidListComponent } from './components/bids/bid-list/bid-list.component';
+import { CreateBidComponent } from './components/bids/create-bid/bid.component';
+import { ContractorsComponent } from './components/contractors/contractors.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,8 +14,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterUserComponent },
   { path: 'e-main', component: MainComponent },
   { path: 'e-project', component: ProjectsComponent },
-  { path: 'e-contractor', component: contractorsComponent },
-  { path: 'e-bid', component: BidComponent },
+  { path: 'e-contractor', component: ContractorsComponent },
+  { path: 'e-bid', component: BidListComponent },
+  { path: 'e-bid/create', component: CreateBidComponent },
 ];
 
 @NgModule({

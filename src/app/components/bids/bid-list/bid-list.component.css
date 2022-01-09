@@ -1,0 +1,33 @@
+#contactorForm{
+    margin: 25px!important
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  mat-card{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: right;
+  }
+  
+  h1{
+    justify-content: center;
+    display: flex;
+    padding: 20px;
+    font-size: xxx-large;
+    font-family: fantasy;
+  }
+  
+  mat-header-row {
+    min-height: 56px;
+    background: #685981 !important;
+    color: white;
+  }
+  
+  th {
+    color: white !important;
+  }
+  
+  
