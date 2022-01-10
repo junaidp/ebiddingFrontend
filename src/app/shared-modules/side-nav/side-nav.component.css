@@ -48,6 +48,11 @@
 margin-bottom:20px
 }
 
+.list-item a {
+  display: flex;
+  justify-content: flex-start;
+}
+
 
 .mat-drawer-container {
   position: inherit !important;
@@ -57,3 +62,9 @@ margin-bottom:20px
   display: block;
   overflow: hidden;
 }
+
+.side-nav-text{
+  margin-left: 5px;
+  margin-top: 4px;
+}
+

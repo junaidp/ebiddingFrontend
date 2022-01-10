@@ -15,7 +15,7 @@
     </div>
     <div mat-dialog-actions>
         <button class="example-width" mat-flat-button type="submit" flex="15" color="accent"
-            [disabled]="!createProjectForm.form.valid || submitting">
+            [disabled]="submitting">
             {{ "Create" }}
         </button>
         <button mat-button mat-dialog-close>Close</button>

@@ -1,17 +1,25 @@
 <section id="bidForm">
-  <h1>Bid</h1>
+  <h1>Create Bid</h1>
+  <!-- <mat-stepper [linear]="isLinear" #stepper> -->
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" #step1="ngForm" (submit)="nextStep(stepper,1)">
         <ng-template matStepLabel>Project</ng-template>
-        <h3 class="selected-pill" *ngIf="!selectedProject.projectId"><span>Please Select a Project</span>
-          <mat-icon class="color-red">warning</mat-icon>
+        <h3 class="selected-pill" *ngIf="!selectedProject.projectId">
+          <span>Please Select a Project</span>
+          <mat-icon class="color-red grow">warning</mat-icon>
+          <a>
+            <mat-icon class="color-white" (click)="refresh(constants.projectStepper)">refresh</mat-icon>
+          </a>
         </h3>
-        <h3 class="selected-pill" *ngIf="selectedProject.projectId"><span class="box-margin">Selected Project :
-            {{selectedProject.name}} </span>
-          <mat-icon class="color-green">check_circle</mat-icon>
+        <h3 class="selected-pill" *ngIf="selectedProject.projectId">
+          <span class="box-margin">Selected Project : {{selectedProject.name}} </span>
+          <mat-icon class="color-green grow">check_circle</mat-icon>
+          <a>
+            <mat-icon class="color-white" (click)="refresh(constants.projectStepper)">refresh</mat-icon>
+          </a>
         </h3>
-        <mat-selection-list [multiple]="false" formControlName="firstCtrl" #projects
+        <mat-selection-list   [multiple]="false" formControlName="firstCtrl" #projects
           (ngModelChange)="onProjectSelection($event)">
           <mat-list-option *ngFor="let project of projectsList" [value]="project">
             <span style="color: black;">{{project.name}}</span>
@@ -19,7 +27,7 @@
         </mat-selection-list>
         <div>
           <!-- <button mat-button matStepperNext>Next</button> -->
-          <button class="example-width" mat-flat-button type="button" mat-button matStepperNext flex="15" color="accent"
+          <button class="example-width" mat-flat-button type="submit" mat-button flex="15" color="accent"
             [disabled]="!selectedProject.projectId">
             Next
           </button>
@@ -27,13 +35,16 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Contractor">
-      <form [formGroup]="secondFormGroup">
-        <h3 class="selected-pill" *ngIf="!selectedContractor.contractorId"><span>Please Select a Contractor</span>
-          <mat-icon class="color-red">warning</mat-icon>
+      <form [formGroup]="secondFormGroup"  #step2="ngForm" (submit)="nextStep(stepper,2)">
+        <h3 class="selected-pill" *ngIf="!selectedContractor.contractorId">
+          <span>Please Select a Contractor</span>
+          <mat-icon class="color-red grow">warning</mat-icon>
+          <a><mat-icon class="color-white" (click)="refresh(constants.contractorStepper)">refresh</mat-icon></a>
         </h3>
-        <h3 class="selected-pill" *ngIf="selectedContractor.contractorId"><span>Selected Contractor :
-            {{selectedContractor.name}}</span>
-          <mat-icon class="color-green">check_circle</mat-icon>
+        <h3 class="selected-pill" *ngIf="selectedContractor.contractorId">
+          <span>Selected Contractor :{{selectedContractor.name}}</span>
+          <mat-icon class="color-green grow">check_circle</mat-icon>
+          <a><mat-icon class="color-white" (click)="refresh(constants.contractorStepper)">refresh</mat-icon></a>
         </h3>
         <mat-selection-list [multiple]="false" formControlName="secondCtrl" #contractors
           (ngModelChange)="onContractorSelection($event)">
@@ -76,7 +87,7 @@
           <button class="example-width back-button" mat-button matStepperPrevious>Back</button>
           <button mat-button class="reset-button example-width" (click)="reset(stepper)">Reset</button>
           <button class="example-width" mat-flat-button type="submit" mat-button flex="15" color="accent"
-            [disabled]="'false'">
+            [disabled]="submitting">
             Create Bid
           </button>
         </div>

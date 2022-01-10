@@ -28,11 +28,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContractorsComponent } from './components/contractors/contractors.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { CreateContractorComponent } from './components/contractors/create-contractor/create-contractor.component';
 import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
 import { BidListComponent } from './components/bids/bid-list/bid-list.component';
 import { CreateBidComponent } from './components/bids/create-bid/bid.component';
+import { RegisterCompanyUserComponent } from './components/register-company-user/register-company-user.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,7 @@ import { CreateBidComponent } from './components/bids/create-bid/bid.component';
     ProjectsComponent,
     ContractorsComponent,
     SideNavComponent,
-    RegisterUserComponent,
+    RegisterCompanyUserComponent,
     CreateProjectComponent,
     CreateContractorComponent,
     BidListComponent,
@@ -73,7 +74,8 @@ import { CreateBidComponent } from './components/bids/create-bid/bid.component';
     MatNativeDateModule,
     MatSidenavModule,
     NgxFlagPickerModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule
 
   ],
   providers: [],

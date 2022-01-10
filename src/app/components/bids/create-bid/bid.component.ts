@@ -10,7 +10,10 @@ import { ProjectService } from 'src/app/Services/project-service/project.service
 import { ContractorService } from 'src/app/Services/contractor-service/contractor-service.service';
 import { CommonService } from 'src/app/Services/common/common.service';
 import { ISaveBid } from 'src/app/interface/ISaveBid';
-import { GlobalConstants } from 'src/app/common/global-constants';
+import { BidConstant, GlobalConstants } from 'src/app/common/global-constants';
+import { ILogedInUser } from 'src/app/interface/ILogedInUser';
+import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,6 +23,8 @@ import { GlobalConstants } from 'src/app/common/global-constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateBidComponent implements OnInit {
+
+  submitting: boolean = false;
   isLinear = true;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -40,24 +45,34 @@ export class CreateBidComponent implements OnInit {
     companyId: "",
     contractorId: ""
   };
+
+  adminUser: ILogedInUser = {
+    name: "",
+    companyId: "",
+    password: "",
+    email: "",
+    userId: "",
+    id: {}
+  };
+  step: number = 0;
   name: string = "";
-  companyId: string = "";
   selectedDate: number = 0;
   @ViewChild('date', {
     read: MatInput
   }) date1: MatInput | undefined;
 
+  readonly constants = BidConstant;
+
   constructor(private _formBuilder: FormBuilder,
     private bidService: BidService,
     private projectService: ProjectService,
     private contractorService: ContractorService,
-    private common: CommonService
+    private common: CommonService,
+    private router: Router
   ) {
-
-    let companyId = localStorage.getItem("companyId");
-    if (companyId)
-      this.companyId = JSON.parse(companyId);
+    this.adminUser = this.common.getUserObject();
   }
+
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -70,29 +85,41 @@ export class CreateBidComponent implements OnInit {
       datePicker: ['', Validators.required],
       name: ['', Validators.required],
     });
-    this.getAllProject();
-    this.getAllContractor();
+    this.refresh(this.step);
+  }
+
+  refresh(event: number) {
+    debugger
+    if (event == this.constants.projectStepper)
+      this.getAllProject();
+    if (event == this.constants.contractorStepper)
+      this.getAllContractor();
   }
 
   getAllContractor() {
-    this.contractorService.findAll(this.companyId).subscribe((data: any) => {
+    this.common.showSpinner();
+    this.contractorService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.contractorsList = data;
+      this.common.hideSpinner();
     });
   }
   getAllProject() {
-    this.projectService.findAll(this.companyId).subscribe((data: any) => {
+    this.common.showSpinner();
+    this.projectService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.projectsList = data;
+      this.common.hideSpinner();
     });
   }
 
   submitForm(form: any) {
     if (!form.valid)
       return;
-    debugger
+    this.common.showSpinner();
+    this.submitting = true;
     var req: ISaveBid = {
       name: form.value.name,
       date: this.selectedDate,
-      companyId: this.companyId,
+      companyId: this.adminUser.companyId,
       contractorId: this.selectedContractor.contractorId,
       projectId: this.selectedProject.projectId
 
@@ -100,11 +127,13 @@ export class CreateBidComponent implements OnInit {
 
     this.bidService.saveBid(req).subscribe((res: any) => {
       if (res) {
+        this.submitting = false;
         const success: boolean = res['success'];
         const message: string = res['message'];
         if (!success) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, message, "Ok");
         this.common.showSuccessErrorSwalDialog(GlobalConstants.success, message, "Ok");
-       // this.reset();
+        this.router.navigate(['/e-bid'])
+        // this.reset();
       }
     })
 
@@ -116,7 +145,6 @@ export class CreateBidComponent implements OnInit {
   }
 
   onProjectSelection(event: any) {
-    debugger
     this.selectedProject = event[0];
   }
 
@@ -125,7 +153,6 @@ export class CreateBidComponent implements OnInit {
   }
 
   getDate(ev: any) {
-    debugger
     this.selectedDate = moment(ev.value).valueOf();
     // console.log('Startdate', this.startDate)
   }
@@ -146,5 +173,10 @@ export class CreateBidComponent implements OnInit {
       companyId: "",
       contractorId: ""
     };
+  }
+
+  nextStep(stepper: MatStepper, step: number) {
+    stepper.selectedIndex = step;
+    this.refresh(step);
   }
 }

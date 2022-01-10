@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalConstants } from 'src/app/common/global-constants';
+import { ILogedInUser } from 'src/app/interface/ILogedInUser';
 import { IProject } from 'src/app/interface/IProject';
 import { CommonService } from 'src/app/Services/common/common.service';
 import { ProjectService } from 'src/app/Services/project-service/project.service';
@@ -14,17 +15,25 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 export class ProjectsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description'];
-  companyId: string = "";
   dataSource: IProject[] = [];
+  adminUser: ILogedInUser = {
+    name: "",
+    companyId: "",
+    password: "",
+    email: "",
+    userId: "",
+    id: {}
+  };
+  companyId: string = "";
   constructor(
     private projectService: ProjectService,
     private _dialog: MatDialog,
     private common: CommonService
   ) {
-    let companyId = localStorage.getItem("companyId");
-    if (companyId)
-      this.companyId = JSON.parse(companyId);
+    this.adminUser = this.common.getUserObject();
   }
+
+
 
   ngOnInit() {
     this.getAllProjects();
@@ -32,8 +41,10 @@ export class ProjectsComponent implements OnInit {
 
 
   getAllProjects() {
-    this.projectService.findAll(this.companyId).subscribe((data: any) => {
+    this.common.showSpinner();
+    this.projectService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.dataSource = data;
+      this.common.hideSpinner();
     });
   }
 
@@ -49,10 +60,12 @@ export class ProjectsComponent implements OnInit {
     }
 
 
-    createProjectComponent.afterClosed().subscribe(result => {
-      if (result) {
-        let dialog = result == "project saved" ? GlobalConstants.success : GlobalConstants.error;
-        this.common.showSuccessErrorSwalDialog(dialog, result.toString().toUpperCase(), 'Ok');
+    createProjectComponent.afterClosed().subscribe(res => {
+      if (res) {
+        const success: boolean = res['success'];
+        const message: string = res['message'];
+        if (!success) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, message, "Ok");
+        this.common.showSuccessErrorSwalDialog(GlobalConstants.success, message, "Ok");
         this.refresh();
       }
     });

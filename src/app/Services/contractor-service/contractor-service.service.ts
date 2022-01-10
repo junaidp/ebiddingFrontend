@@ -13,7 +13,7 @@ export class ContractorService {
   private saveContractorsUrl = environment.baseUrl + 'saveContractor';
 
   constructor(private http: HttpClient) {
-
+    
   }
 
   public findAll(companyId: string) {

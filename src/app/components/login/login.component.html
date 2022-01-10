@@ -8,7 +8,7 @@
   <h2>Login</h2>
   <form id="login-form" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
     <mat-form-field class="example-width">
-      <input matInput name="userNameOrEmailAddress" [(ngModel)]="loginModel.email" [placeholder]="'UserNameOrEmail'"
+      <input matInput name="emailOrUser" [(ngModel)]="loginModel.emailOrUser" [placeholder]="'UserNameOrEmail'"
         autocomplete="off" required maxlength="255" />
     </mat-form-field>
     <mat-form-field class="example-width">
@@ -21,7 +21,7 @@
     </button>
   </form>
   <div id="create-account-wrap">
-    <p>Not a member? <a href="#" routerLink="/register">Create Account</a>
+    <p>Not a member? <a href="#" routerLink="/register">Create Company</a>
     <p>
   </div>
   <!--create-account-wrap-->

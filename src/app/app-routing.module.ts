@@ -6,12 +6,12 @@ import { ContractorsComponent } from './components/contractors/contractors.compo
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { RegisterCompanyUserComponent } from './components/register-company-user/register-company-user.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterUserComponent },
+  { path: 'register', component: RegisterCompanyUserComponent },
   { path: 'e-main', component: MainComponent },
   { path: 'e-project', component: ProjectsComponent },
   { path: 'e-contractor', component: ContractorsComponent },

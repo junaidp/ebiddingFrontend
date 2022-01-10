@@ -3,25 +3,28 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
     <mat-nav-list style="margin-top: 90% !important;">
-      <ng-container >
+      <ng-container>
         <div class="list-item">
           <a matTooltip="Project" routerLink="/e-project">
             <!-- <img style="width: 35px; height: 35px;" [src]="item.icon"> -->
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> Project
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon><span
+              class="side-nav-text">Project</span>
           </a>
         </div>
       </ng-container>
-      <ng-container >
+      <ng-container>
         <div class="list-item">
           <a matTooltip="Contractor" routerLink="/e-contractor">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon> Contractor
+            <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon><span
+              class="side-nav-text">Contractor</span>
           </a>
         </div>
       </ng-container>
-      <ng-container >
-        <div class="list-item" >
+      <ng-container>
+        <div class="list-item">
           <a matTooltip="Bid" routerLink="/e-bid">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> Bid
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon><span
+              class="side-nav-text">Bid</span>
           </a>
         </div>
       </ng-container>

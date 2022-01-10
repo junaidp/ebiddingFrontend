@@ -1,5 +1,5 @@
 export interface ILoginModule{
-  email: string;
+  emailOrUser: string;
   password: string;
 }
 

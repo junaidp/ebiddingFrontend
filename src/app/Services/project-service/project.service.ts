@@ -21,7 +21,7 @@ export class ProjectService {
   }
 
   saveProject(data: ISaveProject) {
-    return this.http.post(this.saveProjectUrl, data, { responseType: 'text' });
+    return this.http.post(this.saveProjectUrl, data, { responseType: 'json' });
   }
 
 

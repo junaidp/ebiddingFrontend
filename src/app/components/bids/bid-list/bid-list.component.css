@@ -29,5 +29,11 @@
   th {
     color: white !important;
   }
+
+  .mat-header{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: right;
+  }
   
   

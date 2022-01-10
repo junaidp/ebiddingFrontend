@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalConstants } from 'src/app/common/global-constants';
 import { IContractor } from 'src/app/interface/IContractor';
+import { ILogedInUser } from 'src/app/interface/ILogedInUser';
 import { CommonService } from 'src/app/Services/common/common.service';
 import { ContractorService } from 'src/app/Services/contractor-service/contractor-service.service';
 import { CreateContractorComponent } from './create-contractor/create-contractor.component';
@@ -13,25 +14,34 @@ import { CreateContractorComponent } from './create-contractor/create-contractor
 })
 export class ContractorsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'description'];
-  companyId: string = "";
   dataSource: IContractor[] = [];
+  adminUser: ILogedInUser = {
+    name: "",
+    companyId: "",
+    password: "",
+    email: "",
+    userId: "",
+    id: {}
+  };
+
   constructor(
     private contractorService: ContractorService,
     private _dialog: MatDialog,
     private common: CommonService
   ) {
-    let companyId = localStorage.getItem("companyId");
-    if (companyId)
-      this.companyId = JSON.parse(companyId);
+    this.adminUser = this.common.getUserObject();
   }
+
 
   ngOnInit() {
     this.getAllContractor();
   }
 
   getAllContractor() {
-    this.contractorService.findAll(this.companyId).subscribe((data: any) => {
+    this.common.showSpinner();
+    this.contractorService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.dataSource = data;
+      this.common.hideSpinner();
     });
   }
 
@@ -46,11 +56,15 @@ export class ContractorsComponent implements OnInit {
     }
 
 
-    createContractorComponent.afterClosed().subscribe(result => {
-      if (result) {
-        let dialog = result == "contractor saved" ? GlobalConstants.success : GlobalConstants.error;
-        this.common.showSuccessErrorSwalDialog(dialog, result.toString().toUpperCase(), 'Ok');
-        this.refresh();
+    createContractorComponent.afterClosed().subscribe(res => {
+      if (res) {
+        // const success: boolean = res['success'];
+        // const message: string = res['message'];
+        // if (!success) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, message, "Ok");
+        // this.common.showSuccessErrorSwalDialog(GlobalConstants.success, message, "Ok");
+        if (res !== "contractor saved")
+          return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, res, "Ok");
+        this.common.showSuccessErrorSwalDialog(GlobalConstants.success, res, "Ok");
       }
     });
   }

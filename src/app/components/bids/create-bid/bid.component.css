@@ -77,6 +77,10 @@ th {
   background-color: darkgray;
 }
 
+.grow {
+  flex-grow: 1;
+}
+
 
 
 
