@@ -21,7 +21,6 @@ const routes: Routes = [
   { path: 'e-bid/create', component: CreateBidComponent, pathMatch: 'full' },
   { path: 'e-user', component: UsersComponent, pathMatch: 'full' },
   { path: 'bidding', component: BiddingComponent, pathMatch: 'full' },
-  { path: 'bidding/:contractor/:bid', component: BiddingComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

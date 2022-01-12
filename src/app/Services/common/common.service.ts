@@ -106,10 +106,12 @@ export class CommonService {
     let adminUSer = localStorage.getItem("user");
     //&& url.includes("e-")route == "createCompany"
     debugger
+    if (url.includes("bidding"))
+      return null
     if (!adminUSer && route == 'createCompany')
       return null;
     if (!adminUSer && route == '')
-       this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     if (adminUSer)
       return JSON.parse(adminUSer);
 

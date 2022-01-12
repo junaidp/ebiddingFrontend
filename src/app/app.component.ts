@@ -15,7 +15,7 @@ export class AppComponent {
   showSideNav() {
     let show: boolean = false;
     const url: string = window.location.href.toString();
-    if (url.includes('e-')) show = true;
+    if (url.includes('e-') && !url.includes('bidding')) show = true;
     return show;
   }
 }
