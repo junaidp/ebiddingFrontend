@@ -8,7 +8,7 @@
   <h2>Login</h2>
   <form id="login-form" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
     <mat-form-field class="example-width">
-      <input matInput name="emailOrUser" [(ngModel)]="loginModel.emailOrUser" [placeholder]="'UserNameOrEmail'"
+      <input matInput name="emailOrUser" [(ngModel)]="loginModel.emailOrUser" [placeholder]="'Email'"
         autocomplete="off" required maxlength="255" />
     </mat-form-field>
     <mat-form-field class="example-width">
