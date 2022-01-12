@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
 
     this.accountService.login(req).subscribe((res: any) => {
       if (res) {
-        debugger
         if (!res.userId || !res.companyId) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Incorrect credentials", "Ok");
         // this.common.showSuccessErrorSwalDialog(GlobalConstants.success, "Incorrect credentials", "Ok");
         localStorage.setItem("user", JSON.stringify(res));

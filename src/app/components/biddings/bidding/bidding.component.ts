@@ -61,7 +61,6 @@ export class BiddingComponent implements OnInit {
       .subscribe(res => {
         this.getBiddings();
       })
-    debugger
     let lastBid = localStorage.getItem("lastBid");
     if (lastBid)
       this.lastBid = lastBid
@@ -71,7 +70,6 @@ export class BiddingComponent implements OnInit {
 
 
   getBidDetails() {
-    debugger
     this.common.showSpinner();
     this.bidService.getBid(this.biddingModule.bidId).subscribe((res: any) => {
       if (res) {

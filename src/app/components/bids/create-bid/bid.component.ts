@@ -107,7 +107,6 @@ export class CreateBidComponent implements OnInit {
   }
 
   refresh(event: number) {
-    debugger
     if (event == this.constants.projectStepper)
       this.getAllProject();
     if (event == this.constants.contractorStepper)
@@ -168,12 +167,10 @@ export class CreateBidComponent implements OnInit {
   }
 
   onContractorSelection(event: any) {
-    debugger
     this.selectedContractor = event;
   }
 
   getDate(ev: any) {
-    debugger
     this.selectedDate = moment(ev.value).valueOf();
     // console.log('Startdate', this.startDate)
   }

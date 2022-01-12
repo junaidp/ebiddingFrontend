@@ -105,7 +105,6 @@ export class CommonService {
     const url: string = window.location.href.toString();
     let adminUSer = localStorage.getItem("user");
     //&& url.includes("e-")route == "createCompany"
-    debugger
     if (url.includes("bidding"))
       return null
     if (!adminUSer && route == 'createCompany')

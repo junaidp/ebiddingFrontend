@@ -56,7 +56,6 @@ export class UsersComponent implements OnInit {
 
     createUserComponent.afterClosed().subscribe(res => {
       if (res) {
-        debugger
         // const success: boolean = res['success'];
         // const message: string = res['message'];
         // if (!success) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, message, "Ok");

@@ -45,7 +45,6 @@ export class CreateUserComponent implements OnInit {
   submitForm(form: NgForm) {
     if (!form.valid)
     return;
-    debugger
     this.common.showSpinner();
     this.submitting = true;
     let req = {
