@@ -12,13 +12,13 @@ table {
   justify-content: right;
 }
 
-h1{
+/* h1{
   justify-content: center;
   display: flex;
   padding: 20px;
   font-size: xxx-large;
   font-family: fantasy;
-}
+} */
 
 mat-header-row {
   min-height: 56px;

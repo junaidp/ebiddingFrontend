@@ -21,6 +21,13 @@ export class CommonService {
 
   }
 
+
+  checkIfAlreadyLogin(){
+    const userObj = this.getUserObject();
+    if(userObj)
+      this.router.navigate(['/e-project']);
+  }
+
   showSpinner(): void {
     console.log("show")
     this.spinner.show();
@@ -95,7 +102,9 @@ export class CommonService {
   }
 
   getUserObject() {
+    const url: string = window.location.href.toString();
     let adminUSer = localStorage.getItem("user");
+    //&& url.includes("e-")
     if (adminUSer)
       return JSON.parse(adminUSer);
     this.router.navigate(["/login"]);
@@ -107,6 +116,10 @@ export class CommonService {
 
   milisToCurrentDateOnly(milis: number) {
     return moment(milis).format("DD MMM YYYY");
+  }
+
+  getCurrentDateMilis(){
+    return moment().valueOf();
   }
 
   // milisToLocalTime(milis: number){

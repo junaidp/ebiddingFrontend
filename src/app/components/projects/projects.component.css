@@ -12,13 +12,6 @@ mat-card{
   justify-content: right;
 }
 
-h1{
-  justify-content: center;
-  display: flex;
-  padding: 20px;
-  font-size: xxx-large;
-  font-family: fantasy;
-}
 
 /* .mat-header-row {
   color: white !important;

@@ -1,0 +1,15 @@
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+
+.mat-dialog-header {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    margin: 10px;
+    /* color: white; */
+    font-family: fantasy;
+}

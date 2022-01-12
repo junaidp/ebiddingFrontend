@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/Services/common/common.service';
+import { ILogedInUser } from 'src/app/interface/ILogedInUser';
 
 @Component({
   selector: 'app-side-nav',
@@ -18,12 +21,30 @@ export class SideNavComponent implements OnInit {
     .pipe(
       map(result => result.matches)
     );
+  adminUser: ILogedInUser = {
+    name: "",
+    companyId: "",
+    password: "",
+    email: "",
+    userId: "",
+    id: {}
+  };
 
-
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router,
+    private common: CommonService
+  ) {
+    this.adminUser = this.common.getUserObject();
+  }
 
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    localStorage.removeItem("user");
+    this.router.navigate(['/login']);
   }
 
 
@@ -34,10 +55,10 @@ export class SideNavComponent implements OnInit {
     //this.common.showSpinner()
     try {
       console.info('Path is ::', path);
-     // this.router.navigate([path]);
-     // this.common.hideSpinner()
+      // this.router.navigate([path]);
+      // this.common.hideSpinner()
     } catch (error) {
-     // this.common.hideSpinner()
+      // this.common.hideSpinner()
       console.warn('Error caught while rerouting::', error);
     }
   }

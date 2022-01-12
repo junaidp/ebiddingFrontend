@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
@@ -34,6 +34,12 @@ import { BidListComponent } from './components/bids/bid-list/bid-list.component'
 import { CreateBidComponent } from './components/bids/create-bid/bid.component';
 import { RegisterCompanyUserComponent } from './components/register-company-user/register-company-user.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { UsersComponent } from './components/users/users.component';
+import { CreateUserComponent } from './components/users/create-user/create-user.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { BiddingComponent } from './components/biddings/bidding/bidding.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule,NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +56,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CreateContractorComponent,
     BidListComponent,
     CreateBidComponent,
+    UsersComponent,
+    CreateUserComponent,
+    BiddingComponent,
   ],
 
   imports: [
@@ -75,10 +84,15 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatSidenavModule,
     NgxFlagPickerModule,
     MatDialogModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatSelectModule,
+    MatMenuModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule
 
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

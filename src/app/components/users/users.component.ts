@@ -4,16 +4,16 @@ import { GlobalConstants } from 'src/app/common/global-constants';
 import { IContractor } from 'src/app/interface/IContractor';
 import { ILogedInUser } from 'src/app/interface/ILogedInUser';
 import { CommonService } from 'src/app/Services/common/common.service';
-import { ContractorService } from 'src/app/Services/contractor-service/contractor-service.service';
-import { CreateContractorComponent } from './create-contractor/create-contractor.component';
+import { UserService } from 'src/app/Services/user-service/user-service.service';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @Component({
-  selector: 'app-contractors',
-  templateUrl: './contractors.component.html',
-  styleUrls: ['./contractors.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class ContractorsComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'description','email'];
+export class UsersComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'description'];
   dataSource: IContractor[] = [];
   adminUser: ILogedInUser = {
     name: "",
@@ -23,41 +23,40 @@ export class ContractorsComponent implements OnInit {
     userId: "",
     id: {}
   };
-
   constructor(
-    private contractorService: ContractorService,
-    private _dialog: MatDialog,
-    private common: CommonService
+    private common: CommonService,
+    private userService: UserService,
+    private _dialog: MatDialog
   ) {
     this.adminUser = this.common.getUserObject();
   }
 
-
   ngOnInit() {
-    this.getAllContractor();
+    this.getAllUsers();
   }
 
-  getAllContractor() {
+  getAllUsers() {
     this.common.showSpinner();
-    this.contractorService.findAll(this.adminUser.companyId).subscribe((data: any) => {
+    this.userService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.dataSource = data;
       this.common.hideSpinner();
     });
   }
 
   openDialog(id: any) {
-    let createContractorComponent;
+    let createUserComponent;
     if (id === undefined || id <= 0) {
-      createContractorComponent = this._dialog.open(CreateContractorComponent);
+      createUserComponent = this._dialog.open(CreateUserComponent);
     } else {
-      createContractorComponent = this._dialog.open(CreateContractorComponent, {
+      createUserComponent = this._dialog.open(CreateUserComponent, {
         data: id
       });
     }
 
 
-    createContractorComponent.afterClosed().subscribe(res => {
+    createUserComponent.afterClosed().subscribe(res => {
       if (res) {
+        debugger
         // const success: boolean = res['success'];
         // const message: string = res['message'];
         // if (!success) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, message, "Ok");
@@ -65,14 +64,12 @@ export class ContractorsComponent implements OnInit {
         if (res !== "contractor saved")
           return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, res, "Ok");
         this.common.showSuccessErrorSwalDialog(GlobalConstants.success, res, "Ok");
-        this.refresh()
       }
     });
   }
 
   refresh() {
-    this.getAllContractor();
+    this.getAllUsers();
   }
-
 
 }

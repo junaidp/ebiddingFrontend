@@ -16,7 +16,7 @@ export class AccountService {
   }
 
   login(data: ILoginModule) {
-    return this.http.get(`${this.loginUrl}/${data.emailOrUser}/${data.password}`);
+    return this.http.get(`${this.loginUrl}?userName=${data.emailOrUser}&password=${data.password}`);
   }
 
   saveCompany(data: Object) {

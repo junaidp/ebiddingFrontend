@@ -24,6 +24,21 @@ import { Router } from '@angular/router';
 })
 export class CreateBidComponent implements OnInit {
 
+  @ViewChild('picker') picker: any;
+  //dateTimePicker
+  public date: moment.Moment | undefined;
+  public disabled = false;
+  public showSpinners = true;
+  public showSeconds = false;
+  public touchUi = false;
+  public enableMeridian = false;
+  public minDate: moment.Moment | undefined;
+  public maxDate: moment.Moment | undefined;
+  public stepHour = 1;
+  public stepMinute = 1;
+  public stepSecond = 1;
+  public color = 'primary';
+
   submitting: boolean = false;
   isLinear = true;
   firstFormGroup!: FormGroup;
@@ -38,13 +53,15 @@ export class CreateBidComponent implements OnInit {
     companyId: "",
     projectId: ""
   };
-  selectedContractor: IContractor = {
-    name: "",
-    description: "",
-    email: "",
-    companyId: "",
-    contractorId: ""
-  };
+
+  selectedContractor: IContractor[] = [];
+  // selectedContractor: IContractor = {
+  //   name: "",
+  //   description: "",
+  //   email: "",
+  //   companyId: "",
+  //   contractorId: ""
+  // };
 
   adminUser: ILogedInUser = {
     name: "",
@@ -75,6 +92,7 @@ export class CreateBidComponent implements OnInit {
 
 
   ngOnInit() {
+    // this.date = new Date(2021,9,4,5,6,7);
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
     });
@@ -120,13 +138,14 @@ export class CreateBidComponent implements OnInit {
       name: form.value.name,
       date: this.selectedDate,
       companyId: this.adminUser.companyId,
-      contractorId: this.selectedContractor.contractorId,
+      contractorId: this.selectedContractor.map(item => item.contractorId),
       projectId: this.selectedProject.projectId
 
     }
 
     this.bidService.saveBid(req).subscribe((res: any) => {
       if (res) {
+        this.common.hideSpinner();
         this.submitting = false;
         const success: boolean = res['success'];
         const message: string = res['message'];
@@ -149,10 +168,12 @@ export class CreateBidComponent implements OnInit {
   }
 
   onContractorSelection(event: any) {
-    this.selectedContractor = event[0];
+    debugger
+    this.selectedContractor = event;
   }
 
   getDate(ev: any) {
+    debugger
     this.selectedDate = moment(ev.value).valueOf();
     // console.log('Startdate', this.startDate)
   }
@@ -166,13 +187,14 @@ export class CreateBidComponent implements OnInit {
       companyId: "",
       projectId: ""
     };
-    this.selectedContractor = {
-      name: "",
-      description: "",
-      email: "",
-      companyId: "",
-      contractorId: ""
-    };
+    this.contractorsList = [];
+    // this.selectedContractor: IContract = {
+    //   name: "",
+    //   description: "",
+    //   email: "",
+    //   companyId: "",
+    //   contractorId: ""
+    // };
   }
 
   nextStep(stepper: MatStepper, step: number) {

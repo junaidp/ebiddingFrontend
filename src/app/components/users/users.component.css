@@ -1,4 +1,4 @@
-#bidForm{
+#mainForm{
     margin: 25px!important
   }
   
@@ -6,19 +6,19 @@
     width: 100%;
   }
   
-  mat-card{
+  .mat-header{
     margin-bottom: 10px;
     display: flex;
     justify-content: right;
   }
   
-  /* h1{
+  h1{
     justify-content: center;
     display: flex;
     padding: 20px;
     font-size: xxx-large;
     font-family: fantasy;
-  } */
+  }
   
   mat-header-row {
     min-height: 56px;
@@ -28,12 +28,6 @@
   
   th {
     color: white !important;
-  }
-
-  .mat-header{
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: right;
   }
   
   

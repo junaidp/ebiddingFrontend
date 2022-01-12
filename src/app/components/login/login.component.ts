@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // $('body').addClass('login-page');
+    this.common.checkIfAlreadyLogin();
   }
 
   toggleUi() {
@@ -40,16 +41,16 @@ export class LoginComponent implements OnInit {
 
     this.accountService.login(req).subscribe((res: any) => {
       if (res) {
-        
+        debugger
         if (!res.userId || !res.companyId) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Incorrect credentials", "Ok");
         // this.common.showSuccessErrorSwalDialog(GlobalConstants.success, "Incorrect credentials", "Ok");
         localStorage.setItem("user", JSON.stringify(res));
         this.router.navigate(["/e-project"]);
-        this.common.showSpinner();
+        this.common.hideSpinner();
+        return;
       }
+      this.common.hideSpinner();
+      return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Incorrect credentials", "Ok");
     })
-
-
   }
-
 }

@@ -1,0 +1,55 @@
+#biddingForm{
+    margin: 25px!important;
+    min-height: 80vh !important;
+}
+
+/* h1{
+    justify-content: center;
+    display: flex;
+    padding: 20px;
+    font-size: xxx-large;
+    font-family: fantasy;
+  } */
+
+  .example-full-width{
+      width: 50%;
+  }
+
+  .form-field-actions{
+    display: flex;
+    justify-content: left;
+  }
+
+  .display-message {
+    text-align: center;
+    margin: 25px;
+    /* font-family: -webkit-pictograph; */
+    font-size: 20px;
+    /* border: 15px solid #3a3148e0;  */
+    border: 15px solid #683ab7d7; 
+    padding: 50px;
+    margin: 20px;
+    border-radius: 100px;
+  }
+
+  .display-flex {
+    display: flex;
+    justify-content: center;
+  }
+
+  .last-bid {
+    width: 300px;
+    text-align: center;
+    margin: 25px;
+    /* font-family: -webkit-pictograph; */
+    font-size: 20px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 100px;
+    color: white
+  }
+
+  .example-full-width{
+    width: 90%;
+  }
+

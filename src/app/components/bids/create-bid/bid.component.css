@@ -13,13 +13,13 @@
   margin: 25px
 }
 
-h1{
+/* h1{
   justify-content: center;
   display: flex;
   padding: 20px;
   font-size: xxx-large;
   font-family: fantasy;
-}
+} */
 
 
 th {
@@ -29,7 +29,6 @@ th {
 
 .selected-pill {
   font-size: large;
-  background: #3a3148e0 !important;
   padding: 10px;
   color: white;
   display: flex;
@@ -38,7 +37,6 @@ th {
 
 .example-full-width{
   width: 90%;
-  margin: 10px;
 }
 
 .container-flex {

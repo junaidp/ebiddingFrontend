@@ -38,7 +38,9 @@ export class BidListComponent implements OnInit {
   getAllBid() {
     this.common.showSpinner();
     this.bidService.findAll(this.adminUser.companyId).subscribe((data: any) => {
-      this.dataSource = data;
+      if (data) {
+        this.dataSource = data;
+      }
       this.common.hideSpinner();
     });
   }
@@ -48,8 +50,8 @@ export class BidListComponent implements OnInit {
   }
 
 
-  convertMiliIntoString(mili: string){
-    return this.common.milisToCurrentDateOnly(parseInt(mili));
+  convertMiliIntoString(mili: string) {
+    return this.common.milisToCurrentDateAndTime(parseInt(mili));
   }
 
 }

@@ -25,19 +25,7 @@
   }
 }
 
-.mat-sidenav{
-  /* background-color: #673ab7; */
-  /* background-color: #3f51b5; */
-  background-color: #3a3148e0 !important;
-  color: white;
-  font-weight: bolder;
-}
 
-.mat-toolbar {
-  /* background-color: #673ab7; */
-  /* background-color: #3f51b5; */
-  background-color: #3a3148e0 !important;
-}
 
 .mat-list-item-content{
   color: white;
@@ -67,4 +55,20 @@ margin-bottom:20px
   margin-left: 5px;
   margin-top: 4px;
 }
+
+.header-title{
+  flex-grow: 1;
+}
+
+.logout{
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.mat-drawer.mat-drawer-side {
+  z-index: 2;
+  width: 120px !important;
+}
+
+
 

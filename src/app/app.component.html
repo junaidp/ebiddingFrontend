@@ -1,13 +1,13 @@
 <section class="content" *ngIf="showSideNav() === true">
     <app-side-nav>
-        <div class="container-fluid">
+        <div class="container-fluid" id="homePageArea">
             <router-outlet></router-outlet>
         </div>
     </app-side-nav>
 </section>
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#fff" type="line-scale" [fullScreen]="true"></ngx-spinner>
-<section class="content" *ngIf="showSideNav() === false">
-    <div class="container-fluid">
+<section class="content" *ngIf="showSideNav() === false" id="homePageArea">
+    <div class="container-fluid" >
         <router-outlet></router-outlet>
     </div>
 </section>

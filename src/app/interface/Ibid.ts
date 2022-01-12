@@ -1,8 +1,8 @@
 export interface IBid {
   name: string;
-  date: Date;
+  date: string;
   companyId: String;
   project: string;
   contractor: string;
-  BidId: string;
+  bidId: string;
 }

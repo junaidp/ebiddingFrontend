@@ -1,0 +1,31 @@
+<div class="mat-dialog-header">
+    Create User
+</div>
+<form #createUserForm="ngForm" (ngSubmit)="submitForm(createUserForm)">
+    <div mat-dialog-content>
+
+        <mat-form-field class="example-width">
+            <input matInput type="text" name="name" [(ngModel)]="userModel.name" [placeholder]="'Name'"
+                autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+        <mat-form-field class="example-width">
+            <input matInput type="email" name="email" [(ngModel)]="userModel.email" [placeholder]="'Email'"
+                autocomplete="off" required maxlength="255" />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Select a Role</mat-label>
+            <mat-select name="role" [(ngModel)]="userModel.role">
+                <mat-option>None</mat-option>
+                <mat-option value="1">Sub-Admin</mat-option>
+                <mat-option value="2">User</mat-option>
+                <mat-option value="3">Option 3</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="example-width" mat-flat-button type="submit" flex="15" color="accent" [disabled]="submitting">
+            {{ "Create" }}
+        </button>
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</form>

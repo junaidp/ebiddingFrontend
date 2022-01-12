@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-nav-list style="margin-top: 90% !important;">
+    <mat-nav-list style="margin-top: 90% !important; margin-left: 10px;">
       <ng-container>
         <div class="list-item">
           <a matTooltip="Project" routerLink="/e-project">
@@ -28,6 +28,14 @@
           </a>
         </div>
       </ng-container>
+      <ng-container>
+        <div class="list-item">
+          <a matTooltip="Bid" routerLink="/e-user">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">group</mat-icon><span
+              class="side-nav-text">Users</span>
+          </a>
+        </div>
+      </ng-container>
 
       <!-- <a style="margin-top: 2em;" mat-list-item (click)="redirect('/')" [matTooltip]="'Logout'">
         <img style="width: 30px; height: 25px;" [src]="'../../../assets/icons/logout-icon.png'">
@@ -39,12 +47,22 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>E-Bidding</span>
+      <span class="header-title">E-Bidding</span>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon> {{adminUser.name}}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>{{adminUser.email}}</button>
+      </mat-menu>
+      <a class="logout" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </a>
     </mat-toolbar>
     <!-- <app-header>
       
     </app-header> -->
     <ng-content></ng-content>
     <!-- Add Content Here -->
+    <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
