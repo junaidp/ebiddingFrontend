@@ -87,7 +87,7 @@ export class CreateBidComponent implements OnInit {
     private common: CommonService,
     private router: Router
   ) {
-    this.adminUser = this.common.getUserObject();
+    this.adminUser = this.common.getUserObject('');
   }
 
 

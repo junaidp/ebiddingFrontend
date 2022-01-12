@@ -34,7 +34,7 @@ export class CreateProjectComponent implements OnInit {
     private _dialogRef: MatDialogRef<CreateProjectComponent>,
     private common: CommonService
   ) {
-    this.adminUser = this.common.getUserObject();
+    this.adminUser = this.common.getUserObject('');
   }
 
   ngOnInit(): void {

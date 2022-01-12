@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
     private userService: UserService,
     private _dialog: MatDialog
   ) {
-    this.adminUser = this.common.getUserObject();
+    this.adminUser = this.common.getUserObject('');
   }
 
   ngOnInit() {

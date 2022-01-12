@@ -22,9 +22,9 @@ export class CommonService {
   }
 
 
-  checkIfAlreadyLogin(){
-    const userObj = this.getUserObject();
-    if(userObj)
+  checkIfAlreadyLogin(route: string) {
+    const userObj = this.getUserObject(route);
+    if (userObj)
       this.router.navigate(['/e-project']);
   }
 
@@ -101,13 +101,18 @@ export class CommonService {
     return response;
   }
 
-  getUserObject() {
+  getUserObject(route: string) {
     const url: string = window.location.href.toString();
     let adminUSer = localStorage.getItem("user");
-    //&& url.includes("e-")
+    //&& url.includes("e-")route == "createCompany"
+    debugger
+    if (!adminUSer && route == 'createCompany')
+      return null;
+    if (!adminUSer && route == '')
+       this.router.navigate(['/login']);
     if (adminUSer)
       return JSON.parse(adminUSer);
-    this.router.navigate(["/login"]);
+
   }
 
   milisToCurrentDateAndTime(milis: number) {
@@ -118,7 +123,7 @@ export class CommonService {
     return moment(milis).format("DD MMM YYYY");
   }
 
-  getCurrentDateMilis(){
+  getCurrentDateMilis() {
     return moment().valueOf();
   }
 

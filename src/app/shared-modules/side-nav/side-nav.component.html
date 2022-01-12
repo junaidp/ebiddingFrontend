@@ -49,10 +49,10 @@
       </button>
       <span class="header-title">E-Bidding</span>
       <button mat-button [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon> {{adminUser.name}}
+        <mat-icon>account_circle</mat-icon> {{adminUser ? adminUser.name : ''}}
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>{{adminUser.email}}</button>
+        <button mat-menu-item>{{adminUser ? adminUser.email : ''}}</button>
       </mat-menu>
       <a class="logout" (click)="logout()">
         <mat-icon>logout</mat-icon>
@@ -63,6 +63,6 @@
     </app-header> -->
     <ng-content></ng-content>
     <!-- Add Content Here -->
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
   </mat-sidenav-content>
 </mat-sidenav-container>

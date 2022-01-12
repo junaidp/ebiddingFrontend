@@ -35,7 +35,7 @@ export class SideNavComponent implements OnInit {
     private router: Router,
     private common: CommonService
   ) {
-    this.adminUser = this.common.getUserObject();
+    this.adminUser = this.common.getUserObject('');
   }
 
 

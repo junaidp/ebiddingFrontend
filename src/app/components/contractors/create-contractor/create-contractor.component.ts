@@ -32,7 +32,7 @@ export class CreateContractorComponent implements OnInit {
     private _dialogRef: MatDialogRef<CreateContractorComponent>,
     private common: CommonService
   ) {
-    this.adminUser = this.common.getUserObject();
+    this.adminUser = this.common.getUserObject('');
   }
 
   ngOnInit(): void {

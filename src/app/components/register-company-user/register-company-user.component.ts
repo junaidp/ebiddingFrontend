@@ -33,7 +33,7 @@ export class RegisterCompanyUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.common.checkIfAlreadyLogin();
+    this.common.checkIfAlreadyLogin('createCompany');
   }
 
   submitForm(event: NgForm) {

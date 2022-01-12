@@ -11,21 +11,21 @@ import { RegisterCompanyUserComponent } from './components/register-company-user
 import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterCompanyUserComponent },
-  { path: 'e-main', component: MainComponent },
-  { path: 'e-project', component: ProjectsComponent },
-  { path: 'e-contractor', component: ContractorsComponent },
-  { path: 'e-bid', component: BidListComponent },
-  { path: 'e-bid/create', component: CreateBidComponent },
-  { path: 'e-user', component: UsersComponent },
-  { path: 'bidding', component: BiddingComponent },
-  { path: 'bidding/:contractor/:bid', component: BiddingComponent },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: 'register', component: RegisterCompanyUserComponent, pathMatch: 'full' },
+  { path: 'e-main', component: MainComponent, pathMatch: 'full' },
+  { path: 'e-project', component: ProjectsComponent, pathMatch: 'full' },
+  { path: 'e-contractor', component: ContractorsComponent, pathMatch: 'full' },
+  { path: 'e-bid', component: BidListComponent, pathMatch: 'full' },
+  { path: 'e-bid/create', component: CreateBidComponent, pathMatch: 'full' },
+  { path: 'e-user', component: UsersComponent, pathMatch: 'full' },
+  { path: 'bidding', component: BiddingComponent, pathMatch: 'full' },
+  { path: 'bidding/:contractor/:bid', component: BiddingComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
