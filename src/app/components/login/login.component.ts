@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // $('body').addClass('login-page');
-    this.common.checkIfAlreadyLogin('login');
+    this.common.checkIfAlreadyLogin();
   }
 
   toggleUi() {

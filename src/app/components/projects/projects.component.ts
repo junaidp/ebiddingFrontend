@@ -30,7 +30,7 @@ export class ProjectsComponent implements OnInit {
     private _dialog: MatDialog,
     private common: CommonService
   ) {
-    this.adminUser = this.common.getUserObject('');
+    this.adminUser = this.common.getUserObject();
   }
 
 

@@ -22,10 +22,16 @@ export class CommonService {
   }
 
 
-  checkIfAlreadyLogin(route: string) {
-    const userObj = this.getUserObject(route);
+  checkIfAlreadyLogin() {
+    const userObj = this.getUserObject();
     if (userObj)
       this.router.navigate(['/e-project']);
+    //   if (url.includes("bidding"))
+    //   return null
+    // if (!adminUSer && route == 'createCompany')
+    //   return null;
+    // if (!adminUSer && route == '')
+    //   this.router.navigate(['/login']);
   }
 
   showSpinner(): void {
@@ -101,19 +107,10 @@ export class CommonService {
     return response;
   }
 
-  getUserObject(route: string) {
-    const url: string = window.location.href.toString();
+  getUserObject() {
     let adminUSer = localStorage.getItem("user");
-    //&& url.includes("e-")route == "createCompany"
-    if (url.includes("bidding"))
-      return null
-    if (!adminUSer && route == 'createCompany')
-      return null;
-    if (!adminUSer && route == '')
-      this.router.navigate(['/login']);
     if (adminUSer)
       return JSON.parse(adminUSer);
-
   }
 
   milisToCurrentDateAndTime(milis: number) {
