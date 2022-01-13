@@ -33,7 +33,10 @@ export class BiddingComponent implements OnInit {
     contractor: "",
     bidId: ""
   }
+  today: number = 0;
+  bidDateMili: number = 0;
   minute: number = 1;
+  bidStartingDate: string = "";
   subscription: Subscription | undefined;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -59,30 +62,35 @@ export class BiddingComponent implements OnInit {
     this.subscription = timer(3000, 30000)
       .pipe()
       .subscribe(res => {
+        this.today = this.common.getCurrentDateMilis();
+        if (this.today < this.bidDateMili)
+          return;
         this.getBiddings();
       })
     let lastBid = localStorage.getItem("lastBid");
     if (lastBid)
-      this.lastBid = lastBid
-
+      this.lastBid = lastBid;
 
   }
 
 
   getBidDetails() {
+    if (!this.biddingModule.bidId)
+      return;
     this.common.showSpinner();
     this.bidService.getBid(this.biddingModule.bidId).subscribe((res: any) => {
       if (res) {
         this.common.hideSpinner();
-        let today = this.common.getCurrentDateMilis();
-        let bidDateMili = parseInt(res['date']);
-        if (today < bidDateMili) {
-          let bidDate = this.common.milisToCurrentDateOnly(bidDateMili);
-          let popupMessage = `Bidding not started yet , will start at ${bidDate}`;
+        this.today = this.common.getCurrentDateMilis();
+        this.bidDateMili = parseInt(res['date']);
+        this.bidModule = res;
+        if (this.today < this.bidDateMili) {
+          this.bidStartingDate = this.common.milisToCurrentDateAndTime(this.bidDateMili);
+          let popupMessage = `Bidding not started yet , will start at ${this.bidStartingDate}`;
           return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
         }
-        this.bidModule = res;
         
+
         // const message: string = res['message'];
         // const success: boolean = res['success'];
         // this.common.hideSpinner();
@@ -96,7 +104,7 @@ export class BiddingComponent implements OnInit {
     if (!form.valid)
       return;
     if (form.value.amount >= this.lastBid)
-      return this.common.showSuccessErrorSwalDialog(GlobalConstants.error,"Your bid can not exceed the previous bid amount", "OK");
+      return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Your bid can not exceed the previous bid amount", "OK");
     this.common.showSpinner();
     var req: ISaveBidding = {
       amount: form.value.amount,

@@ -36,6 +36,8 @@ export class BidListComponent implements OnInit {
 
 
   getAllBid() {
+    if (this.adminUser && !this.adminUser.companyId)
+    return;
     this.common.showSpinner();
     this.bidService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       if (data) {

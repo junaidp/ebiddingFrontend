@@ -31,6 +31,8 @@ export class ProjectsComponent implements OnInit {
     private common: CommonService
   ) {
     this.adminUser = this.common.getUserObject();
+    if (!this.adminUser)
+      this.common.redirectToLogin();
   }
 
 
@@ -41,6 +43,8 @@ export class ProjectsComponent implements OnInit {
 
 
   getAllProjects() {
+    if (this.adminUser && !this.adminUser.companyId)
+    return;
     this.common.showSpinner();
     this.projectService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.dataSource = data;

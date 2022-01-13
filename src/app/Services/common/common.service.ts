@@ -138,5 +138,9 @@ export class CommonService {
   // }
 
 
+  redirectToLogin(){
+    this.router.navigate(['/login']);
+  }
+
 
 }

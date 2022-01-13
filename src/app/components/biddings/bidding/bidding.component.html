@@ -8,6 +8,7 @@
                     <div *ngIf="message" class="display-message">{{message}}</div>
                     <div class="display-flex">
                         <div *ngIf="lastBid" class="last-bid theme-color">Last Bid Amount: {{lastBid}}</div>
+                        <div *ngIf="today < bidDateMili" class="start-bid theme-color">Bidding not started yet , will start at: {{bidStartingDate}}</div>
                     </div>
 
                     <form #bidding="ngForm" (ngSubmit)="submit(bidding)"

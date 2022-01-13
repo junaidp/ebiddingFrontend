@@ -29,6 +29,8 @@ export class UsersComponent implements OnInit {
     private _dialog: MatDialog
   ) {
     this.adminUser = this.common.getUserObject();
+    if (!this.adminUser)
+      this.common.redirectToLogin();
   }
 
   ngOnInit() {
@@ -36,6 +38,8 @@ export class UsersComponent implements OnInit {
   }
 
   getAllUsers() {
+    if (this.adminUser && !this.adminUser.companyId)
+    return;
     this.common.showSpinner();
     this.userService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.dataSource = data;

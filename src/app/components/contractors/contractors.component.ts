@@ -13,7 +13,7 @@ import { CreateContractorComponent } from './create-contractor/create-contractor
   styleUrls: ['./contractors.component.css']
 })
 export class ContractorsComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'description','email'];
+  displayedColumns: string[] = ['name', 'description', 'email'];
   dataSource: IContractor[] = [];
   adminUser: ILogedInUser = {
     name: "",
@@ -30,6 +30,8 @@ export class ContractorsComponent implements OnInit {
     private common: CommonService
   ) {
     this.adminUser = this.common.getUserObject();
+    if (!this.adminUser)
+      this.common.redirectToLogin();
   }
 
 
@@ -38,6 +40,8 @@ export class ContractorsComponent implements OnInit {
   }
 
   getAllContractor() {
+    if (this.adminUser && !this.adminUser.companyId)
+    return;
     this.common.showSpinner();
     this.contractorService.findAll(this.adminUser.companyId).subscribe((data: any) => {
       this.dataSource = data;
