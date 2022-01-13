@@ -26,12 +26,6 @@ export class CommonService {
     const userObj = this.getUserObject();
     if (userObj)
       this.router.navigate(['/e-project']);
-    //   if (url.includes("bidding"))
-    //   return null
-    // if (!adminUSer && route == 'createCompany')
-    //   return null;
-    // if (!adminUSer && route == '')
-    //   this.router.navigate(['/login']);
   }
 
   showSpinner(): void {
