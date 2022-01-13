@@ -89,7 +89,7 @@ export class BiddingComponent implements OnInit {
           let popupMessage = `Bidding not started yet , will start at ${this.bidStartingDate}`;
           return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
         }
-        
+
 
         // const message: string = res['message'];
         // const success: boolean = res['success'];
@@ -103,8 +103,10 @@ export class BiddingComponent implements OnInit {
   submit(form: NgForm) {
     if (!form.valid)
       return;
-    if (form.value.amount >= this.lastBid)
-      return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Your bid can not exceed the previous bid amount", "OK");
+    debugger
+    if (this.lastBid != "")
+      if (form.value.amount >= parseInt(this.lastBid))
+        return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Your bid can not exceed the previous bid amount", "OK");
     this.common.showSpinner();
     var req: ISaveBidding = {
       amount: form.value.amount,
