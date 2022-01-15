@@ -5,12 +5,30 @@
             <h1>{{bidModule.name}}</h1>
             <div class="col-md-12">
                 <mat-card>
+                    <div *ngIf="!biddingClosed" class="display-flex-top">
+                        <!-- <div class="start-bid theme-color">Timer: {{ convertHMS(currentBiddingTimer * 30) }}</div> -->
+                        <div class="start-bid theme-color">
+                            <countdown #cd [config]="config" (event)="handleEvent($event)">
+                            </countdown>
+                        </div>
+                        <div *ngIf="today > bidDateMili" class="start-bid theme-color">Bidding Started
+                            <!-- <img class="arrow"
+                                src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png"> -->
+                        </div>
+                    </div>
                     <div *ngIf="message" class="display-message">{{message}}</div>
                     <div class="display-flex">
                         <div *ngIf="lastBid" class="last-bid theme-color">Last Bid Amount: {{lastBid}}</div>
-                        <div *ngIf="today < bidDateMili" class="start-bid theme-color">Bidding not started yet , will start at: {{bidStartingDate}}</div>
-                    </div>
+                        <div *ngIf="!biddingClosed">
 
+                            <div *ngIf="today < bidDateMili" class="start-bid theme-color">Bidding not started yet ,
+                                will start at: {{bidStartingDate}}</div>
+
+                        </div>
+                        <div *ngIf="biddingClosed" class="start-bid theme-color">
+                            Bidding Closed
+                        </div>
+                    </div>
                     <form #bidding="ngForm" (ngSubmit)="submit(bidding)"
                         style="margin: 20px; display: flex; justify-content: center;">
                         <div class="row">
@@ -24,7 +42,8 @@
 
                         <div class="row">
                             <mat-card-actions class="form-field-actions">
-                                <button class="example-width" mat-flat-button type="submit" color="accent">
+                                <button class="example-width" mat-flat-button type="submit" color="accent"
+                                    [disabled]="today < bidDateMili || biddingClosed">
                                     {{ "Submit" }}
                                 </button>
                             </mat-card-actions>

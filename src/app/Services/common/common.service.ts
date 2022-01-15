@@ -133,7 +133,7 @@ export class CommonService {
 
 
   redirectToLogin(){
-    this.router.navigate(['/login']);
+    this.router.navigate(['account/login']);
   }
 
 

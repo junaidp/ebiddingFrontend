@@ -20,6 +20,7 @@ export class BiddingComponent implements OnInit {
   @Input() intervalPeriod: number = 1;
   message: string = "";
   lastBid: string = "";
+  currentBiddingTimer: number = 0;
   biddingModule: ISaveBidding = {
     amount: 0,
     contractorId: "",
@@ -35,8 +36,11 @@ export class BiddingComponent implements OnInit {
   }
   today: number = 0;
   bidDateMili: number = 0;
-  minute: number = 1;
+  //minute: number = 1;
   bidStartingDate: string = "";
+  biddingClosed: boolean = false;
+
+  config: Object = { leftTime: 300, format: 'm:s' };
   subscription: Subscription | undefined;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,20 +61,63 @@ export class BiddingComponent implements OnInit {
   amount: number = 0;
   ngOnInit(): void {
     this.getBidDetails();
+    this.handleBiddingTimer();
 
-    this.minute = this.intervalPeriod * 30 * 1000;
+    let biddingObject = localStorage.getItem("biddingObject");
+    if (!biddingObject)
+      return;
+    let obj = JSON.parse(biddingObject);
+    if (obj.bidId == this.biddingModule.bidId) {
+      this.lastBid = obj.lastBid;
+      this.currentBiddingTimer = +obj.currentBiddingTimer;
+      this.config = {
+        leftTime: (10 - this.currentBiddingTimer) * 30, format: 'm:s'
+      }
+    }
+  }
+
+
+  handleBiddingTimer() {
+    if (this.today < this.bidDateMili)
+          return;
+   //this.minute = this.intervalPeriod * 30 * 1000;
     this.subscription = timer(3000, 30000)
       .pipe()
       .subscribe(res => {
         this.today = this.common.getCurrentDateMilis();
         if (this.today < this.bidDateMili)
           return;
-        this.getBiddings();
-      })
-    let lastBid = localStorage.getItem("lastBid");
-    if (lastBid)
-      this.lastBid = lastBid;
 
+        if (res > 0 && res < this.currentBiddingTimer)
+          this.currentBiddingTimer++
+        else
+          if (res > 0)
+            this.currentBiddingTimer++
+
+
+        this.config = {
+          leftTime: (10 - this.currentBiddingTimer) * 30, format: 'm:s'
+        }
+        var obj = {
+          lastBid: this.lastBid,
+          bidId: this.bidModule.bidId,
+          currentBiddingTimer: this.currentBiddingTimer
+        }
+        localStorage.setItem("biddingObject", JSON.stringify(obj));
+
+
+        this.getBiddings();
+
+        if (this.currentBiddingTimer > 10) {
+          this.biddingClosed = true;
+          return;
+        }
+
+        if (this.currentBiddingTimer == 10) {
+          this.biddingClosed = true;
+          return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Bidding is Closed", "Ok");
+        }
+      })
   }
 
 
@@ -103,10 +150,14 @@ export class BiddingComponent implements OnInit {
   submit(form: NgForm) {
     if (!form.valid)
       return;
-    debugger
     if (this.lastBid != "")
       if (form.value.amount >= parseInt(this.lastBid))
         return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Your bid can not exceed the previous bid amount", "OK");
+    if (this.today < this.bidDateMili) {
+      let popupMessage = `Bidding not started yet , will start at ${this.bidStartingDate}`;
+      return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
+    }
+
     this.common.showSpinner();
     var req: ISaveBidding = {
       amount: form.value.amount,
@@ -122,7 +173,12 @@ export class BiddingComponent implements OnInit {
         this.common.showSuccessErrorSwalDialog(GlobalConstants.success, message, "OK");
         this.lastBid = form.value.amount;
         this.amount = 0;
-        localStorage.setItem("lastBid", this.lastBid.toString());
+        var obj = {
+          lastBid: this.lastBid,
+          bidId: this.bidModule.bidId,
+          currentBiddingTimer: this.currentBiddingTimer
+        }
+        localStorage.setItem("biddingObject", JSON.stringify(obj));
       }
     })
   }
@@ -139,6 +195,26 @@ export class BiddingComponent implements OnInit {
         this.message = message;
       }
     })
+  }
+
+
+  convertHMS(sec: number) {
+    //const sec = parseInt(value, 10); // convert value to number if it's string
+    //let hours = Math.floor(sec / 3600); // get hours
+    let minutes = Math.floor(sec / 60); // get minutes
+    let seconds = sec; //  get seconds
+    let stringHorse = "";
+    let stringMin = "";
+    let stringSec = "";
+    // add 0 if value < 10; Example: 2 => 02
+    //if (hours < 10) { stringHorse = "0" + hours; }
+    if (minutes < 10) { stringMin = "0" + minutes; }
+    if (seconds > 0) { stringSec = "" + seconds; }
+    return stringMin + ':' + stringSec; // Return is HH : MM : SS
+  }
+
+  handleEvent(event: any) {
+    debugger
   }
 
 }

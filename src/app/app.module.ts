@@ -22,24 +22,26 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
 import { SideNavComponent } from './shared-modules/side-nav/side-nav.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { MainComponent } from './components/main/main.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { ContractorsComponent } from './components/contractors/contractors.component';
-import { CreateContractorComponent } from './components/contractors/create-contractor/create-contractor.component';
-import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
-import { BidListComponent } from './components/bids/bid-list/bid-list.component';
-import { CreateBidComponent } from './components/bids/create-bid/bid.component';
-import { RegisterCompanyUserComponent } from './components/register-company-user/register-company-user.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { UsersComponent } from './components/users/users.component';
-import { CreateUserComponent } from './components/users/create-user/create-user.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
-import { BiddingComponent } from './components/biddings/bidding/bidding.component';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule,NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { LoginComponent } from './components/account-module/login/login.component';
+import { ProjectsComponent } from './components/main-module/projects/projects.component';
+import { ContractorsComponent } from './components/main-module/contractors/contractors.component';
+import { RegisterCompanyUserComponent } from './components/account-module/register-company-user/register-company-user.component';
+import { CreateProjectComponent } from './components/main-module/projects/create-project/create-project.component';
+import { CreateContractorComponent } from './components/main-module/contractors/create-contractor/create-contractor.component';
+import { BidListComponent } from './components/main-module/bids/bid-list/bid-list.component';
+import { CreateBidComponent } from './components/main-module/bids/create-bid/bid.component';
+import { UsersComponent } from './components/main-module/users/users.component';
+import { BiddingComponent } from './components/account-module/biddings/bidding/bidding.component';
+import { CreateUserComponent } from './components/main-module/users/create-user/create-user.component';
+import { HeaderComponent } from './common/header/header.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { AccountComponent } from './components/account-module/account.component';
+import { MainComponent } from './components/main-module/main.component';
+import { CountdownModule } from 'ngx-countdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,7 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule,NgxMatNativeDateModu
     HeaderComponent,
     FooterComponent,
     PostCreateComponent,
-    MainComponent,
+    LoginComponent,
     ProjectsComponent,
     ContractorsComponent,
     SideNavComponent,
@@ -59,6 +61,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule,NgxMatNativeDateModu
     UsersComponent,
     CreateUserComponent,
     BiddingComponent,
+    AccountComponent,
+    MainComponent
   ],
 
   imports: [
@@ -89,7 +93,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule,NgxMatNativeDateModu
     MatMenuModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    CountdownModule 
 
   ],
   providers: [MatDatepickerModule],

@@ -57,7 +57,7 @@ export class RegisterCompanyUserComponent implements OnInit {
         if (!success) return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, message, "Ok");
         this.common.showSuccessErrorSwalDialogResponse(GlobalConstants.success, message, "Ok").then(res => {
           if (res) {
-            this.common.showSpinner();
+            this.common.hideSpinner();
             this.router.navigate(["/login"]);
             
           }

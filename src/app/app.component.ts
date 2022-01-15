@@ -11,11 +11,4 @@ export class AppComponent {
   public constructor() {
 
   }
-
-  showSideNav() {
-    let show: boolean = false;
-    const url: string = window.location.href.toString();
-    if (url.includes('e-') && !url.includes('/bidding')) show = true;
-    return show;
-  }
 }
