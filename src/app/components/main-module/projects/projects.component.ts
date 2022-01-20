@@ -30,7 +30,6 @@ export class ProjectsComponent implements OnInit {
     private _dialog: MatDialog,
     private common: CommonService
   ) {
-    debugger
     this.adminUser = this.common.getUserObject();
     if (!this.adminUser)
       this.common.redirectToLogin();
@@ -78,5 +77,8 @@ export class ProjectsComponent implements OnInit {
 
   refresh() {
     this.getAllProjects();
+  }
+
+  onChange(event: any){
   }
 }

@@ -7,7 +7,7 @@
                 <mat-card>
                     <div *ngIf="!biddingClosed" class="display-flex-top">
                         <!-- <div class="start-bid theme-color">Timer: {{ convertHMS(currentBiddingTimer * 30) }}</div> -->
-                        <div class="start-bid theme-color">
+                        <div *ngIf="today > bidDateMili" class="start-bid theme-color">
                             <countdown #cd [config]="config" (event)="handleEvent($event)">
                             </countdown>
                         </div>
@@ -26,7 +26,7 @@
 
                         </div>
                         <div *ngIf="biddingClosed" class="start-bid theme-color">
-                            Bidding Closed
+                            Bidding Closed on {{bidStartingDate}}
                         </div>
                     </div>
                     <form #bidding="ngForm" (ngSubmit)="submit(bidding)"

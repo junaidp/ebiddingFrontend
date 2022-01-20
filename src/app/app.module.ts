@@ -42,6 +42,7 @@ import { FooterComponent } from './common/footer/footer.component';
 import { AccountComponent } from './components/account-module/account.component';
 import { MainComponent } from './components/main-module/main.component';
 import { CountdownModule } from 'ngx-countdown';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,8 @@ import { CountdownModule } from 'ngx-countdown';
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    CountdownModule 
+    CountdownModule ,
+    MatPaginatorModule
 
   ],
   providers: [MatDatepickerModule],

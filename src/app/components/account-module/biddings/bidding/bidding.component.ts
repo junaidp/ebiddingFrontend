@@ -35,6 +35,7 @@ export class BiddingComponent implements OnInit {
     bidId: ""
   }
   today: number = 0;
+  biddingEndTime: number = 0;
   bidDateMili: number = 0;
   //minute: number = 1;
   bidStartingDate: string = "";
@@ -79,11 +80,13 @@ export class BiddingComponent implements OnInit {
 
   handleBiddingTimer() {
     if (this.today < this.bidDateMili)
-          return;
-   //this.minute = this.intervalPeriod * 30 * 1000;
+      return;
+    //this.minute = this.intervalPeriod * 30 * 1000;
     this.subscription = timer(3000, 30000)
       .pipe()
       .subscribe(res => {
+        if (this.biddingClosed)
+          return;
         this.today = this.common.getCurrentDateMilis();
         if (this.today < this.bidDateMili)
           return;
@@ -131,11 +134,21 @@ export class BiddingComponent implements OnInit {
         this.today = this.common.getCurrentDateMilis();
         this.bidDateMili = parseInt(res['date']);
         this.bidModule = res;
+        this.biddingEndTime = 300000 + this.bidDateMili;
         if (this.today < this.bidDateMili) {
           this.bidStartingDate = this.common.milisToCurrentDateAndTime(this.bidDateMili);
           let popupMessage = `Bidding not started yet , will start at ${this.bidStartingDate}`;
           return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
         }
+        if (this.biddingEndTime <= this.today) {
+          this.bidStartingDate = this.common.milisToCurrentDateAndTime(this.bidDateMili);
+          this.biddingClosed = true;
+          let popupMessage = `Bidding Closed on ${this.bidStartingDate}`;
+          return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
+
+        }
+
+
 
 
         // const message: string = res['message'];
@@ -214,7 +227,7 @@ export class BiddingComponent implements OnInit {
   }
 
   handleEvent(event: any) {
-    debugger
+
   }
 
 }
