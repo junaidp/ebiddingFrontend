@@ -5,6 +5,7 @@ export class GlobalConstants {
     public static success: number = 1;
     public static error: number = 0;
     public static warning: number = 2;
+    public static info: number = 3;
     public static companyId: string;
 
 }

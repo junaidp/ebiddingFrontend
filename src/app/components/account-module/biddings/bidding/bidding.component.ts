@@ -118,7 +118,7 @@ export class BiddingComponent implements OnInit {
 
         if (this.currentBiddingTimer == 10) {
           this.biddingClosed = true;
-          return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Bidding is Closed", "Ok");
+          return this.common.showSuccessErrorSwalDialog(GlobalConstants.warning, "Bidding is Closed", "Ok");
         }
       })
   }
@@ -138,19 +138,14 @@ export class BiddingComponent implements OnInit {
         if (this.today < this.bidDateMili) {
           this.bidStartingDate = this.common.milisToCurrentDateAndTime(this.bidDateMili);
           let popupMessage = `Bidding not started yet , will start at ${this.bidStartingDate}`;
-          return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
+          return this.common.showSuccessErrorSwalDialog(GlobalConstants.info, popupMessage, "OK");
         }
         if (this.biddingEndTime <= this.today) {
           this.bidStartingDate = this.common.milisToCurrentDateAndTime(this.bidDateMili);
           this.biddingClosed = true;
           let popupMessage = `Bidding Closed on ${this.bidStartingDate}`;
-          return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
-
+          return this.common.showSuccessErrorSwalDialog(GlobalConstants.info, popupMessage, "OK");
         }
-
-
-
-
         // const message: string = res['message'];
         // const success: boolean = res['success'];
         // this.common.hideSpinner();
@@ -165,10 +160,10 @@ export class BiddingComponent implements OnInit {
       return;
     if (this.lastBid != "")
       if (form.value.amount >= parseInt(this.lastBid))
-        return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Your bid can not exceed the previous bid amount", "OK");
+        return this.common.showSuccessErrorSwalDialog(GlobalConstants.warning, "Your bid can not exceed the previous bid amount", "OK");
     if (this.today < this.bidDateMili) {
       let popupMessage = `Bidding not started yet , will start at ${this.bidStartingDate}`;
-      return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, popupMessage, "OK");
+      return this.common.showSuccessErrorSwalDialog(GlobalConstants.info, popupMessage, "OK");
     }
 
     this.common.showSpinner();

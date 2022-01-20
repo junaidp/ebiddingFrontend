@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-//import {NgxSpinnerService} from "ngx-spinner";
 import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
-import { ILogedInUser } from 'src/app/interface/ILogedInUser';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 
@@ -41,9 +38,9 @@ export class CommonService {
   showSuccessErrorSwalDialog(code: number, message: string, closeBtnText: string) {
     console.info('Dialog Open');
     Swal.fire({
-      title: code === 0 ? 'Error' : code === 1 ? 'Success' : 'Alert',
+      title: code === 0 ? 'Error' : code === 1 ? 'Success' : code === 3 ? 'Alert' : 'Warning',
       text: message,
-      icon: code === 0 ? 'error' : code === 1 ? 'success' : 'warning',
+      icon: code === 0 ? 'error' : code === 1 ? 'success' : code === 3 ? 'info' : 'warning',
       showCancelButton: false,
       showConfirmButton: true,
       confirmButtonText: closeBtnText,
@@ -132,7 +129,7 @@ export class CommonService {
   // }
 
 
-  redirectToLogin(){
+  redirectToLogin() {
     this.router.navigate(['account/login']);
   }
 
