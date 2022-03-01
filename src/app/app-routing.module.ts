@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OktaAuthGuard, OktaCallbackComponent } from '@okta/okta-angular';
 import { AccountComponent } from './components/account-module/account.component';
 import { BiddingComponent } from './components/account-module/biddings/bidding/bidding.component';
 import { LoginComponent } from './components/account-module/login/login.component';
@@ -15,25 +16,26 @@ const routes: Routes = [
   {
     path: 'account', component: AccountComponent,
     children: [
-      { path: 'login', component: LoginComponent, pathMatch: 'full' },
+      { path: 'login', component: LoginComponent, pathMatch: 'full', },
       { path: 'register', component: RegisterCompanyUserComponent, pathMatch: 'full' },
       { path: 'bidding', component: BiddingComponent, pathMatch: 'full' },
     ]
   },
+  { path: 'loginOkta', component: OktaCallbackComponent },
   {
-    path: '', component: MainComponent,
+    path: '', component: MainComponent, canActivate: [OktaAuthGuard], 
     children: [
       { path: 'e-project', component: ProjectsComponent, pathMatch: 'full' },
       { path: 'e-contractor', component: ContractorsComponent, pathMatch: 'full' },
       { path: 'e-bid', component: BidListComponent, pathMatch: 'full' },
       { path: 'e-bid/create', component: CreateBidComponent, pathMatch: 'full' },
       { path: 'e-user', component: UsersComponent, pathMatch: 'full' },
-      { path: '**', component: ProjectsComponent  }
+      { path: '**', component: ProjectsComponent }
     ]
   }
- 
- 
-  
+
+
+
 ];
 
 @NgModule({
