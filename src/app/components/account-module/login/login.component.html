@@ -1,33 +1,38 @@
-<div id="okta-sign-in-widget">
-</div>
+<!-- <div id="sign-in-widget">
+</div> -->
 
 
-<!-- <div id="login-form-wrap">
-  <div class="logo">
+<div id="login-form-wrap">
+  <!-- <div class="logo">
     <a href="javascript:void(0);">E-Bidding</a>
+  </div> -->
+
+  <div fxLayoutAlign="center" class="loginImage">
+    <img src="assets/image/env.png">
   </div>
-  comment Secition
-  <div fxLayoutAlign="center">
-    <img src="assets/image/env.jpg" class="loginImage">
+  <hr>
+  <div class="loginImage">
+    <h2><b>Sign In</b></h2>
   </div>
-  comment Secition
-  <h2>Login</h2>
-  <form id="login-form" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+
+  <form id="login-form" #loginForm="ngForm" (ngSubmit)="signINSubmit(loginForm)">
     <mat-form-field class="example-width">
-      <input matInput name="emailOrUser" [(ngModel)]="loginModel.emailOrUser" [placeholder]="'Email'"
-        autocomplete="off" required maxlength="255" />
+      <input matInput name="emailOrUser" fill="standard" [(ngModel)]="loginModel.emailOrUser" [placeholder]="'Email'" autocomplete="off"
+        required maxlength="255" />
     </mat-form-field>
     <mat-form-field class="example-width">
       <input matInput type="password" name="password" [(ngModel)]="loginModel.password" [placeholder]="'Password'"
         required maxlength="32" />
     </mat-form-field>
-    <button  class="example-width" mat-flat-button type="submit" flex="15" color="accent"
-      [disabled]="!loginForm.form.valid || submitting">
-      {{ "LogIn" }}
-    </button>
+    <div class="button-margin">
+      <button class="example-width" mat-flat-button type="submit" flex="15" color="accent"
+        [disabled]="!loginForm.form.valid || submitting">
+        {{ "LogIn" }}
+      </button>
+    </div>
   </form>
   <div id="create-account-wrap">
     <p>Not a member? <a href="#" routerLink="/account/register">Create Company</a>
     <p>
   </div>
-</div> -->
+</div>

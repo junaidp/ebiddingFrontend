@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   { path: 'loginOkta', component: OktaCallbackComponent },
   {
-    path: '', component: MainComponent, canActivate: [OktaAuthGuard], 
+    path: '', component: MainComponent,
     children: [
       { path: 'e-project', component: ProjectsComponent, pathMatch: 'full' },
       { path: 'e-contractor', component: ContractorsComponent, pathMatch: 'full' },

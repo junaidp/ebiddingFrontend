@@ -8,17 +8,17 @@ import { AccountService } from 'src/app/Services/company-service/company.service
 import * as OktaSignIn from '@okta/okta-signin-widget';
 import config from 'src/app/oktaAuth/okta';
 import { OKTA_AUTH } from '@okta/okta-angular';
-import { OktaAuth } from '@okta/okta-auth-js';
+import { OktaAuth, Tokens } from '@okta/okta-auth-js';
 //const oktaAuth = new OktaAuth(config.oidc);
-
+const DEFAULT_ORIGINAL_URI = window.location.origin;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  oktaSign: any;
+  signIn: any;
 
   constructor(
     private router: Router,
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit,OnDestroy {
     private common: CommonService,
     @Inject(OKTA_AUTH) public oktaAuth: OktaAuth
   ) {
-    this.oktaSign = new OktaSignIn({
+    this.signIn = new OktaSignIn({
       logo: 'assets/image/env.jpg',
       feature: {
         registration: true
@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit,OnDestroy {
       baseUrl: config.oidc.issuer.split('/oauth2')[0],
       clientId: config.oidc.clientId,
       redirectUri: config.oidc.redirectUri,
-      authParam: {
-        pkce: true,
-        issuer: config.oidc.issuer,
-        scopes: config.oidc.scope
-      }
+      // authParam: {
+      //   pkce: true,
+      //   issuer: config.oidc.issuer,
+      //   scopes: config.oidc.scope
+      // }
     })
   }
   submitting = false;
@@ -46,24 +46,35 @@ export class LoginComponent implements OnInit,OnDestroy {
     emailOrUser: '',
     password: '',
   };
+  ngOnInit() {
+    debugger
+    // When navigating to a protected route, the route path will be saved as the `originalUri`
+    // If no `originalUri` has been saved, then redirect back to the app root
+    const originalUri = this.oktaAuth.getOriginalUri();
+    if (!originalUri || originalUri === DEFAULT_ORIGINAL_URI) {
+      this.oktaAuth.setOriginalUri('/');
+    }
 
-  ngOnInit(): void {
-    // $('body').addClass('login-page');
-    //this.common.checkIfAlreadyLogin();
-    this.oktaSign.renderEl({
-      el: '#okta-sign-in-widget'
-    }, (response: any) => {
+    this.signIn.showSignInToGetTokens({
+      el: '#sign-in-widget',
+      scopes: config.oidc.scope
+    }).then((tokens: Tokens) => {
+      // Remove the widget
       debugger
-      if (response.status === 'SUCCESS') {
-        this.oktaAuth.signInWithRedirect();
-      }
-    }, (error: any) => {
-      throw error;
-    })
+      this.signIn.remove();
+
+      // In this flow the redirect to Okta occurs in a hidden iframe
+      this.oktaAuth.handleLoginRedirect(tokens);
+      // this.oktaAuth.signInWithRedirect();
+    }).catch((err: any) => {
+      debugger
+      // Typically due to misconfiguration
+      throw err;
+    });
   }
 
   ngOnDestroy(): void {
-      this.oktaSign.removeItem();
+    //this.signIn.removeItem();
   }
 
   toggleUi() {
@@ -89,4 +100,26 @@ export class LoginComponent implements OnInit,OnDestroy {
       return this.common.showSuccessErrorSwalDialog(GlobalConstants.error, "Incorrect credentials", "Ok");
     })
   }
+
+
+  signINSubmit(event: NgForm) {
+    this.common.showSpinner();
+    this.oktaAuth.signIn({
+      username: event.value.emailOrUser,
+      password: event.value.password
+    })
+      .then(res => {
+        this.common.hideSpinner();
+        localStorage.setItem("user", JSON.stringify(res));
+        return this.oktaAuth.token.getWithRedirect({
+          sessionToken: res.sessionToken
+        });
+      })
+      .catch(err => {
+        this.common.hideSpinner();
+        console.log('Found an error', err)
+      }
+      );
+  }
+
 }

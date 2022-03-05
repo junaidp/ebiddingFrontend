@@ -122,32 +122,24 @@ const oktaAuth = new OktaAuth({ ...okta.oidc});
   providers: [MatDatepickerModule,
     {
       provide: OKTA_CONFIG,
-      useFactory: () => {
-        const oktaAuth = new OktaAuth(okta.oidc);
-        return {
-          oktaAuth,
-          onAuthRequired: (oktaAuth: OktaAuth, injector: Injector) => {
-            const triggerLogin = () => {
-              // Redirect the user to your custom login page
-              const router = injector.get(Router);
-              router.navigate(['account/login']);
-            };
-            if (!oktaAuth.authStateManager.getPreviousAuthState()?.isAuthenticated) {
-              // App initialization stage
-              triggerLogin();
-            } else {
-              // Ask the user to trigger the login process during token autoRenew process
-              console.log("Do you want to re-authenticate?");
-              // const modalService = injector.get(SuiModalService);
-              // modalService
-              //   .open(new ConfirmModal("Do you want to re-authenticate?", "Auth required", "Yes", "No"))
-              //   .onApprove(triggerLogin)
-              //   .onDeny(() => {});
-            }
-          }  
-        }
-      }
-      //useValue: { oktaAuth }
+      // useFactory: () => {
+      //   const oktaAuth = new OktaAuth(okta.oidc);
+      //   return {
+      //     oktaAuth,
+      //     onAuthRequired: (oktaAuth: OktaAuth, injector: Injector) => {
+      //       const triggerLogin = () => {
+      //         const router = injector.get(Router);
+      //         router.navigate(['account/login']);
+      //       };
+      //       if (!oktaAuth.authStateManager.getPreviousAuthState()?.isAuthenticated) {
+      //         triggerLogin();
+      //       } else {
+      //         console.log("Do you want to re-authenticate?");
+      //       }
+      //     }  
+      //   }
+      // }
+      useValue: { oktaAuth }
     }],
   bootstrap: [AppComponent]
 })
